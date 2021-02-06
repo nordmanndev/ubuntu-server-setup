@@ -53,10 +53,12 @@ function main() {
     setupNodeYarn
     setupPython
 
-    execAsUser "${username}" setupGit
-    execAsUser "${username}" setupZSH
-    execAsUser "${username}" setupRuby
-    execAsUser "${username}" setupVim
+    sudo -i -u "${username}" bash << EOF
+    $(setupGit)
+    $(setupZSH)
+    $(setupRuby)
+    $(setupVim)
+EOF
 
     # fix for (warning: unable to access '$HOME/.config/git/attributes': Permission denied)
     sudo chown -R "${username}" /home/"${username}"/.config/

@@ -53,7 +53,7 @@ function main() {
     setupNodeYarn
     setupPython
 
-    sudo -i -u "${username}" bash << EOF
+    exec sudo -i -u "${username}" bash << EOF
     $(setupGit)
     $(setupZSH)
     $(setupRuby)
@@ -151,11 +151,11 @@ function setupHostname() {
 }
 
 function setupZSH() {
-    sudo apt install zsh -y
+    sudo apt-get install zsh -y
     # Verify installation (Expected result: zsh 5.4.2 or more recent):
     echo "You have installed ZSH $(zsh --version)" 
     echo "Let us now make ZSH your default shell ..." 
-    chsh -s $(which zsh)
+    sudo chsh -s $(which zsh)
 
     # ohmyzsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -197,10 +197,10 @@ function setupNodeYarn() {
 }
 
 function setupPython() {
-    sudo apt install -y python3-pip  # also installs python3-dev
+    sudo apt-get install -y python3-pip  # also installs python3-dev
 
     # PILLOW needs these
-    sudo apt install -y libffi-dev libjpeg-dev zlib1g-dev libtiff-dev libfreetype6-dev libraqm-dev libraqm0 pngquant libopenjp2-7-dev libopenjp2-7 tk-dev libwebp-dev liblcms2-dev
+    sudo apt-get install -y libffi-dev libjpeg-dev zlib1g-dev libtiff-dev libfreetype6-dev libraqm-dev libraqm0 pngquant libopenjp2-7-dev libopenjp2-7 tk-dev libwebp-dev liblcms2-dev
 }
 
 function setupGit() {
@@ -216,7 +216,7 @@ function setupGit() {
 
 function setupRuby() {
     # first, install dependencies needed for ruby installation via rbenv (we already have node and yarn)
-    sudo apt install libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev libssl-dev -y
+    sudo apt-get install libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev libssl-dev -y
 
     # Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build: 
     cd
@@ -241,7 +241,7 @@ function setupRuby() {
 function setupVim() {
     # Vim setup
     sudo -H pip3 install powerline-status
-    sudo apt install vim-nox -y
+    sudo apt-get install vim-nox -y
     curl -L https://bit.ly/janus-bootstrap | bash
     cp -rv $HOME/ubuntu-server-setup/.janus/ $HOME/
     cp -v $HOME/ubuntu-server-setup/.vimrc.after $HOME/

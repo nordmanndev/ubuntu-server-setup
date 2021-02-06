@@ -33,7 +33,7 @@ function main() {
 
     # Use exec and tee to redirect logs to stdout and a log file at the same time 
     # https://unix.stackexchange.com/a/145654
-    exec > >(tee -a ${output_file}) 2>&1
+    exec > >(tee -a "${output_file}") 2>&1
     disableSudoPassword "${username}"
     addSSHKey "${username}" "${sshKey}"
     changeSSHConfig

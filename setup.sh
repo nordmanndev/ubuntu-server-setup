@@ -27,7 +27,7 @@ function main() {
 
     addUserAccount "${username}" "${password}"
 
-    read -rp $'Paste in the public SSH key for the new user:\n' sshKey
+    read -rp $'Paste in the public SSH key for the new user:\nHint: cat ~/.ssh/id_rsa.pub\n' sshKey
     echo 'Running setup script...'
     logTimestamp "${output_file}"
 
@@ -128,28 +128,28 @@ function setupHostname() {
     # ref: https://linuxize.com/post/how-to-change-hostname-on-ubuntu-18-04/
     # ref: https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname/
     hostnamectl
-    echo "Let's setup a new hostname"
-    read -p 'hostname: ' myhostname
+    echo "Let's setup a new hostname" >&3
+    read -p 'hostname: ' myhostname >&3
     sudo hostnamectl set-hostname $myhostname
 
     cat /etc/hosts
-    echo "updating your /etc/hosts file"
+    echo "updating your /etc/hosts file" >&3
     # add text after 1st line
     # https://stackoverflow.com/a/44894788
     sudo sed -i "1 a 127.0.0.1   $myhostname" /etc/hosts
 
     # for AWS ...
-    echo -e "\e[35m===========================================================\e[00m"
-    echo -e "changing \e[35mpreserve_hostname: false\e[00m to \e[35mpreserve_hostname: true\e[00m"
-    echo -e "\e[35m===========================================================\e[00m"
+    echo -e "\e[35m===========================================================\e[00m" >&3
+    echo -e "changing \e[35mpreserve_hostname: false\e[00m to \e[35mpreserve_hostname: true\e[00m" >&3
+    echo -e "\e[35m===========================================================\e[00m" >&3
     sudo sed -i -e 's/preserve_hostname:\ false/preserve_hostname:\ true/g' /etc/cloud/cloud.cfg
 }
 
 function setupZSH() {
     sudo apt install zsh -y
     # Verify installation (Expected result: zsh 5.4.2 or more recent):
-    echo "You have installed ZSH $(zsh --version)"
-    echo "Let us now make ZSH your default shell ..."
+    echo "You have installed ZSH $(zsh --version)" >&3
+    echo "Let us now make ZSH your default shell ..." >&3
     chsh -s $(which zsh)
 
     # ohmyzsh
@@ -177,7 +177,7 @@ function setupZSH() {
 
     sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
-    echo "in order to use your fancy new ZSH setup, exit terminal and enter a new session"
+    echo "in order to use your fancy new ZSH setup, exit terminal and enter a new session" >&3
 }
 
 function setupNodeYarn() {
@@ -202,9 +202,9 @@ function setupGit() {
     # Configure git
     git config --global color.ui true
 
-    echo "Now Configuring Git, Please specify your Git Global Name & Email"
-    read -p 'Your (git) Name: ' git_name
-    read -p 'Your (git) Email Address: ' git_email
+    echo "Now Configuring Git, Please specify your Git Global Name & Email" >&3
+    read -p 'Your (git) Name: ' git_name >&3
+    read -p 'Your (git) Email Address: ' git_email >&3
     git config --global user.name $git_name
     git config --global user.email $git_email
 }

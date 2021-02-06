@@ -31,7 +31,9 @@ function main() {
     echo 'Running setup script...'
     logTimestamp "${output_file}"
 
-    exec 3>&1 >>"${output_file}" 2>&1
+    # Use exec and tee to redirect logs to stdout and a log file at the same time 
+    # https://unix.stackexchange.com/a/145654
+    exec > >(tee -a ${output_file}) 2>&1
     disableSudoPassword "${username}"
     addSSHKey "${username}" "${sshKey}"
     changeSSHConfig
@@ -43,7 +45,7 @@ function main() {
 
     setupTimezone
 
-    echo "Installing Network Time Protocol... " >&3
+    echo "Installing Network Time Protocol... " 
     configureNTP
 
     # ------------ @engineervix's additional functions ------------
@@ -51,20 +53,21 @@ function main() {
     setupNodeYarn
     setupPython
 
-    # fix for (warning: unable to access '$HOME/.config/git/attributes': Permission denied)
-    sudo chown -R "${username}" /home/"${username}"/.config/
-
     execAsUser "${username}" setupGit
     execAsUser "${username}" setupZSH
     execAsUser "${username}" setupRuby
     execAsUser "${username}" setupVim
+
+    # fix for (warning: unable to access '$HOME/.config/git/attributes': Permission denied)
+    sudo chown -R "${username}" /home/"${username}"/.config/
+
     # ---------- end @engineervix's additional functions ----------
 
     sudo service ssh restart
 
     cleanup
 
-    echo "Setup Done! Log file is located at ${output_file}" >&3
+    echo "Setup Done! Log file is located at ${output_file}" 
 }
 
 function setupSwap() {
@@ -94,13 +97,13 @@ function logTimestamp() {
 }
 
 function setupTimezone() {
-    echo -ne "Enter the timezone for the server (Default is 'Africa/Lusaka'):\n" >&3
+    echo -ne "Enter the timezone for the server (Default is 'Africa/Lusaka'):\n" 
     read -r timezone
     if [ -z "${timezone}" ]; then
         timezone="Africa/Lusaka"
     fi
     setTimezone "${timezone}"
-    echo "Timezone is set to $(cat /etc/timezone)" >&3
+    echo "Timezone is set to $(cat /etc/timezone)" 
 }
 
 # Keep prompting for the password and password confirmation
@@ -128,28 +131,28 @@ function setupHostname() {
     # ref: https://linuxize.com/post/how-to-change-hostname-on-ubuntu-18-04/
     # ref: https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname/
     hostnamectl
-    echo "Let's setup a new hostname" >&3
-    read -p 'hostname: ' myhostname >&3
+    echo "Let's setup a new hostname" 
+    read -p 'hostname: ' myhostname 
     sudo hostnamectl set-hostname $myhostname
 
     cat /etc/hosts
-    echo "updating your /etc/hosts file" >&3
+    echo "updating your /etc/hosts file" 
     # add text after 1st line
     # https://stackoverflow.com/a/44894788
     sudo sed -i "1 a 127.0.0.1   $myhostname" /etc/hosts
 
     # for AWS ...
-    echo -e "\e[35m===========================================================\e[00m" >&3
-    echo -e "changing \e[35mpreserve_hostname: false\e[00m to \e[35mpreserve_hostname: true\e[00m" >&3
-    echo -e "\e[35m===========================================================\e[00m" >&3
+    echo -e "\e[35m===========================================================\e[00m" 
+    echo -e "changing \e[35mpreserve_hostname: false\e[00m to \e[35mpreserve_hostname: true\e[00m" 
+    echo -e "\e[35m===========================================================\e[00m" 
     sudo sed -i -e 's/preserve_hostname:\ false/preserve_hostname:\ true/g' /etc/cloud/cloud.cfg
 }
 
 function setupZSH() {
     sudo apt install zsh -y
     # Verify installation (Expected result: zsh 5.4.2 or more recent):
-    echo "You have installed ZSH $(zsh --version)" >&3
-    echo "Let us now make ZSH your default shell ..." >&3
+    echo "You have installed ZSH $(zsh --version)" 
+    echo "Let us now make ZSH your default shell ..." 
     chsh -s $(which zsh)
 
     # ohmyzsh
@@ -177,7 +180,7 @@ function setupZSH() {
 
     sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
-    echo "in order to use your fancy new ZSH setup, exit terminal and enter a new session" >&3
+    echo "in order to use your fancy new ZSH setup, exit terminal and enter a new session" 
 }
 
 function setupNodeYarn() {
@@ -202,9 +205,9 @@ function setupGit() {
     # Configure git
     git config --global color.ui true
 
-    echo "Now Configuring Git, Please specify your Git Global Name & Email" >&3
-    read -p 'Your (git) Name: ' git_name >&3
-    read -p 'Your (git) Email Address: ' git_email >&3
+    echo "Now Configuring Git, Please specify your Git Global Name & Email" 
+    read -p 'Your (git) Name: ' git_name 
+    read -p 'Your (git) Email Address: ' git_email 
     git config --global user.name $git_name
     git config --global user.email $git_email
 }

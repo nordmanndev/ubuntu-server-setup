@@ -53,7 +53,7 @@ function main() {
     setupNodeYarn
     setupPython
 
-    exec sudo -i -u "${username}" bash << EOF
+    exec sudo -i -u "${username}" /bin/bash << EOF
     $(setupGit)
     $(setupZSH)
     $(setupRuby)
@@ -158,12 +158,14 @@ function setupZSH() {
     sudo chsh -s $(which zsh)
 
     # ohmyzsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    execAsUser "${username}" "sh install.sh"
 
     # powerlevel10k
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
     # Replace ZSH_THEME="robbyrussell" with ZSH_THEME="powerlevel10k/powerlevel10k".
-    sed 's/robbyrussell/powerlevel10k\/powerlevel10k/g' -i ~/.zshrc
+    sed 's/robbyrussell/powerlevel10k\/powerlevel10k/g' -i $HOME/.zshrc
 
     # font installation
     sudo apt install fonts-inconsolata fonts-symbola -y
@@ -220,18 +222,18 @@ function setupRuby() {
 
     # Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build: 
     cd
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
-    echo 'eval "$(rbenv init -)"' >> ~/.zshrc
-    exec $SHELL -l
+    git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> $HOME/.zshrc
+    echo 'eval "$(rbenv init -)"' >> $HOME/.zshrc
+    . $HOME/.profile
 
-    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-    echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.zshrc
-    exec $SHELL -l
+    git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+    echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> $HOME/.zshrc
+    . $HOME/.profile
 
     rbenv install 2.6.6
     rbenv global 2.6.6
-    exec $SHELL -l
+    . $HOME/.profile
     ruby -v
 
     ## The last step is to install Bundler

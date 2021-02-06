@@ -53,7 +53,7 @@ function main() {
     setupNodeYarn
     setupPython
 
-    exec sudo -i -u "${username}" /bin/bash << EOF
+    exec sudo -u "${username}" -H /bin/bash << EOF
     $(setupGit)
     $(setupZSH)
     $(setupRuby)
@@ -158,10 +158,7 @@ function setupZSH() {
     sudo chsh -s $(which zsh)
 
     # ohmyzsh
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    chmod +x install.sh
-    ./install.sh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     # powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k

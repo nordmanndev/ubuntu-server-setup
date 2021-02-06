@@ -160,7 +160,8 @@ function setupZSH() {
     # ohmyzsh
     # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    execAsUser "${username}" "sh install.sh"
+    chmod +x install.sh
+    execAsUser "${username}" "./install.sh"
 
     # powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k

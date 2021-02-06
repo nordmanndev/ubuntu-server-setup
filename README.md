@@ -1,6 +1,6 @@
 # Bash setup script for Ubuntu servers
 
-> This is a fork of <https://github.com/jasonheecs/ubuntu-server-setup> with additional customization
+> This is a fork of <https://github.com/jasonheecs/ubuntu-server-setup> with additional customization especially targetted towards AWS AMIs
 >
 >
 > - setup Hostname

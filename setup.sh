@@ -158,12 +158,12 @@ function setupZSH() {
     sudo chsh -s $(which zsh)
 
     # ohmyzsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    sudo -u "${username}" -H bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     # powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
     # Replace ZSH_THEME="robbyrussell" with ZSH_THEME="powerlevel10k/powerlevel10k".
-    sed 's/robbyrussell/powerlevel10k\/powerlevel10k/g' -i $HOME/.zshrc
+    sudo -u "${username}" -H bash -c "sed 's/robbyrussell/powerlevel10k\/powerlevel10k/g' -i $HOME/.zshrc"
 
     # font installation
     sudo apt install fonts-inconsolata fonts-symbola -y
@@ -205,13 +205,13 @@ function setupPython() {
 
 function setupGit() {
     # Configure git
-    git config --global color.ui true
+    sudo -u "${username}" -H bash -c "git config --global color.ui true"
 
     echo "Now Configuring Git, Please specify your Git Global Name & Email" 
     read -p 'Your (git) Name: ' git_name 
     read -p 'Your (git) Email Address: ' git_email 
-    git config --global user.name $git_name
-    git config --global user.email $git_email
+    sudo -u "${username}" -H bash -c "git config --global user.name \"${git_name}\""
+    sudo -u "${username}" -H bash -c "git config --global user.email \"${git_email}\""
 }
 
 function setupRuby() {
@@ -220,22 +220,28 @@ function setupRuby() {
 
     # Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build: 
     cd
-    git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> $HOME/.zshrc
-    echo 'eval "$(rbenv init -)"' >> $HOME/.zshrc
+    sudo -u "${username}" -H bash -c "git clone https://github.com/rbenv/rbenv.git ${HOME}/.rbenv"
+    sudo -u "${username}" -H bash -c "echo 'export PATH=\"${HOME}/.rbenv/bin:${PATH}\"' >> ${HOME}/.zshrc"
+    sudo -u "${username}" -H bash -c "echo 'eval \"$(rbenv init -)\"' >> ${HOME}/.zshrc"
     . $HOME/.profile
+    . $HOME/.bashrc
+    . $HOME/.zshrc
 
-    git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
-    echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> $HOME/.zshrc
+    sudo -u "${username}" -H bash -c "git clone https://github.com/rbenv/ruby-build.git ${HOME}/.rbenv/plugins/ruby-build"
+    sudo -u "${username}" -H bash -c "echo 'export PATH=\"${HOME}/.rbenv/plugins/ruby-build/bin:$PATH\"' >> ${HOME}/.zshrc"
     . $HOME/.profile
+    . $HOME/.bashrc
+    . $HOME/.zshrc
 
-    rbenv install 2.6.6
-    rbenv global 2.6.6
+    sudo -u "${username}" -H bash -c "rbenv install 2.6.6"
+    sudo -u "${username}" -H bash -c "rbenv global 2.6.6"
     . $HOME/.profile
+    . $HOME/.bashrc
+    . $HOME/.zshrc
     ruby -v
 
     ## The last step is to install Bundler
-    gem install bundler
+    sudo -u "${username}" -H bash -c "gem install bundler"
 }
 
 function setupVim() {
@@ -243,8 +249,8 @@ function setupVim() {
     sudo -H pip3 install powerline-status
     sudo apt-get install vim-nox -y
     curl -L https://bit.ly/janus-bootstrap | bash
-    cp -rv $HOME/ubuntu-server-setup/.janus/ $HOME/
-    cp -v $HOME/ubuntu-server-setup/.vimrc.after $HOME/
+    sudo -u "${username}" -H bash -c "cp -rv \"${HOME}\"/ubuntu-server-setup/.janus/ \"${HOME}\"/"
+    sudo -u "${username}" -H bash -c "cp -v \"${HOME}\"/ubuntu-server-setup/.vimrc.after \"${HOME}\"/"
 }
 
 # --------- end addtitional features not in original script --------- #

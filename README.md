@@ -34,18 +34,13 @@ SSH into your server, update package list and upgrade packages:
 sudo apt-get update && sudo apt-get upgrade -y
 ```
 
-Clone this repository (& submodules) into your home directory:
+Clone this repository (& submodules) into your home directory, and run the setup script:
 
 ```bash
 cd ~
-git clone --recurse-submodules https://github.com/engineervix/ubuntu-server-setup.git
-```
-
-Run the setup script
-
-```bash
-cd ubuntu-server-setup
-bash setup.sh
+git clone --recurse-submodules https://github.com/engineervix/ubuntu-server-setup.git \
+&& cd ubuntu-server-setup \
+&& bash setup.sh
 ```
 
 ## Setup prompts

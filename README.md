@@ -23,6 +23,10 @@ This is a setup script to automate the setup and provisioning of Ubuntu servers.
 - Create Swap file based on machine's installed memory
 - Setup the timezone for the server (Default to "Africa/Lusaka")
 - Install Network Time Protocol
+- Setup **ruby** using [`rbenv`](https://github.com/rbenv/rbenv)
+- Install [`python3-pip`](https://packages.ubuntu.com/focal/python3-pip), [`node`](https://nodejs.org/en/) and [`yarn`](https://yarnpkg.com/)
+- Setup **ZSH** and [`oh-my-zsh`](https://ohmyz.sh) with the [`powerlevel10k` theme](https://github.com/romkatv/powerlevel10k)
+- Setup [Janus](https://github.com/carlhuda/janus) -- a Vim Distribution designed to provide minimal working environment using the most popular plugins and the most common mappings.
 
 ## Installation
 
@@ -54,7 +58,11 @@ ssh-keygen -t rsa
 cat ~/.ssh/id_rsa.pub
 ```
 
-Finally, you will be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Asia/Singapore' if you do not specify a value.
+You will further be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Asia/Singapore' if you do not specify a value.
+
+You will also be asked to provide a `hostname` for your server.
+
+Finally, you might be asked for your password towards the end when the script attempts to change the default shell to ZSH as the newly created user.
 
 ## Post setup actions
 

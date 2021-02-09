@@ -25,7 +25,7 @@ This is a setup script to automate the setup and provisioning of Ubuntu servers.
 - Create Swap file based on machine's installed memory
 - Setup the timezone for the server (Default to "Africa/Lusaka")
 - Install Network Time Protocol
-- Setup **ruby** using [`rbenv`](https://github.com/rbenv/rbenv)
+- Install `ruby`
 - Install [`python3-pip`](https://packages.ubuntu.com/focal/python3-pip), [`node`](https://nodejs.org/en/) and [`yarn`](https://yarnpkg.com/)
 - Setup **ZSH** and [`oh-my-zsh`](https://ohmyz.sh) with the [`powerlevel10k` theme](https://github.com/romkatv/powerlevel10k)
 - Setup [Janus](https://github.com/carlhuda/janus) -- a Vim Distribution designed to provide minimal working environment using the most popular plugins and the most common mappings.

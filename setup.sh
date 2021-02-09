@@ -41,6 +41,7 @@ function main() {
   disableSudoPassword "${username}"
   addSSHKey "${username}" "${sshKey}"
   changeSSHConfig
+  furtherHardening
   setupUfw
 
   if ! hasSwap; then
@@ -75,7 +76,8 @@ function main() {
   echo -e "\e[35mLet us now make ZSH your default shell ...\e[00m" 
   sudo -i -u "${username}" -H bash -c "chsh -s $(which zsh)"
 
-  mv -v "${current_dir}/${output_file}" /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/"${output_file}"
+  sudo mv -v "${current_dir}/${output_file}" /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/"${output_file}"
+  sudo rm -fv /home/$username/oh_my_zsh_install.sh
   echo -e "Setup Done! Log file (\e[35m${output_file}\e[00m) is in \e[35m${username}\e[00m's home directory"
 }
 
@@ -243,6 +245,15 @@ function setupVim() {
 
   sudo cp -rv $HOME/ubuntu-server-setup/.janus/ /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.janus/
   sudo cp -v $HOME/ubuntu-server-setup/.vimrc.after /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.vimrc.after
+}
+
+function furtherHardening() {
+  # restrict access to the server
+  echo "AllowUsers ${username}" | sudo tee -a /etc/ssh/sshd_config
+
+  # Secure Shared Memory
+  # tip 6 at https://hostadvice.com/how-to/how-to-harden-your-ubuntu-18-04-server/
+  echo "none /run/shm tmpfs defaults,ro 0 0" | sudo tee -a /etc/fstab
 }
 
 # --------- end addtitional features not in original script --------- #

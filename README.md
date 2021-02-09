@@ -1,5 +1,7 @@
 # Bash setup script for Ubuntu servers
 
+[![Build Status](https://travis-ci.com/github/engineervix/ubuntu-server-setup.svg?branch=master)](https://travis-ci.org/engineervix/ubuntu-server-setup)
+
 > This is a fork of <https://github.com/jasonheecs/ubuntu-server-setup> with additional customization especially targetted towards AWS AMIs
 >
 >

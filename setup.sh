@@ -187,8 +187,8 @@ function setupZSH() {
   sudo apt-get install zsh -y
 
   # ohmyzsh
-  wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-  ZSH="/home/$username/.oh-my-zsh" sh install.sh --unattended
+  sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /home/$username/oh_my_zsh_install.sh
+  sudo -i -u engineer -H bash -c "ZSH=\"/home/$username/.oh-my-zsh\" sh oh_my_zsh_install.sh --unattended"
   sudo chown -R "${username}":"${username}" /home/$username/.oh-my-zsh
   sudo cp -v ${current_dir}/.zshrc /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.zshrc
   sudo -i -u "${username}" -H bash -c "sed -i \"s/root/home\/$username/g\" /home/$username/.zshrc"
@@ -214,7 +214,7 @@ function setupZSH() {
 
   sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
-  echo -e "\e[35min order to use your fancy new ZSH setup, exit terminal and enter a new session\e[00m" 
+  echo -e "\e[35min order to use your fancy new ZSH setup, you'll have to later exit terminal and enter a new session\e[00m" 
 }
 
 function setupRuby() {

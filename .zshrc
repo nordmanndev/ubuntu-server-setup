@@ -107,3 +107,25 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+# --------- Custom Functions --------- #
+
+# best compression:
+# tar cv path/to/dir/ | xz -3e > compressed_file.tar.xz
+
+tar_max() {
+  tar cv "$1" | xz -3e > "$2".tar.xz
+}
+
+# search for string in files
+grep_this() {
+  grep --color -inrw . -e "$1"
+  printf "\033[0;36m=================================================================\033[0m\n"
+  echo "Matches: " $(grep --color -inrw . -e "$1" | wc -l)
+  printf "\033[1;36m=================================================================\033[0m\n"
+}
+
+# create directory with today's date as dir_name in format YYYY-mmm-dd-day
+mkdir_date() {
+  mkdir -p $(date '+%Y-%h-%d-%a')
+}

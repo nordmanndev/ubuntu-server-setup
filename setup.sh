@@ -220,21 +220,7 @@ function setupZSH() {
 }
 
 function setupRuby() {
-  # first, install dependencies needed for ruby installation via rbenv (we already have node and yarn)
-  sudo apt-get install libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev libssl-dev -y
-
-  # Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build: 
-  cd /home/$username/
-  sudo -u "${username}" -H bash -c "git clone https://github.com/rbenv/rbenv.git /home/$username/.rbenv"
-  sudo -u "${username}" -H bash -c "git clone https://github.com/rbenv/ruby-build.git /home/$username/.rbenv/plugins/ruby-build"
-
-  sudo -u "${username}" -H bash -c "/home/${username}/.rbenv/bin/rbenv install --verbose 2.6.6"
-  sudo -u "${username}" -H bash -c "/home/${username}/.rbenv/bin/rbenv global 2.6.6"
-
-  /home/${username}/.rbenv/shims/ruby -v
-
-  # The last step is to install Bundler
-  sudo -u "${username}" -H bash -c "/home/${username}/.rbenv/shims/gem install bundler"
+  sudo apt-get install ruby-full ruby-bundler
 }
 
 function setupVim() {

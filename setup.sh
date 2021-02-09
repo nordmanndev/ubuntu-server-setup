@@ -228,7 +228,7 @@ function setupRuby() {
   sudo -u "${username}" -H bash -c "git clone https://github.com/rbenv/rbenv.git /home/$username/.rbenv"
   sudo -u "${username}" -H bash -c "git clone https://github.com/rbenv/ruby-build.git /home/$username/.rbenv/plugins/ruby-build"
 
-  sudo -u "${username}" -H bash -c "/home/${username}/.rbenv/bin/rbenv install 2.6.6"
+  sudo -u "${username}" -H bash -c "/home/${username}/.rbenv/bin/rbenv install --verbose 2.6.6"
   sudo -u "${username}" -H bash -c "/home/${username}/.rbenv/bin/rbenv global 2.6.6"
 
   /home/${username}/.rbenv/shims/ruby -v

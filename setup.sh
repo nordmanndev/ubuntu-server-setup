@@ -220,7 +220,7 @@ function setupZSH() {
 }
 
 function setupRuby() {
-  sudo apt-get install ruby-full ruby-bundler
+  sudo apt-get install ruby-full ruby-bundler -y
 }
 
 function setupVim() {

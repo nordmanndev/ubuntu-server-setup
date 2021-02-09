@@ -190,7 +190,7 @@ function setupZSH() {
 
   # ohmyzsh
   sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /home/$username/oh_my_zsh_install.sh
-  sudo -i -u engineer -H bash -c "ZSH=\"/home/$username/.oh-my-zsh\" sh oh_my_zsh_install.sh --unattended"
+  sudo -i -u "${username}" -H bash -c "ZSH=\"/home/$username/.oh-my-zsh\" sh oh_my_zsh_install.sh --unattended"
   sudo chown -R "${username}":"${username}" /home/$username/.oh-my-zsh
   sudo cp -v ${current_dir}/.zshrc /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.zshrc
   sudo -i -u "${username}" -H bash -c "sed -i \"s/root/home\/$username/g\" /home/$username/.zshrc"

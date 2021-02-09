@@ -70,7 +70,25 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  colored-man-pages
+  colorize
+  command-not-found
+  django
+  extract
+  git
+  git-extras
+  gitignore
+  grunt
+  gulp
+  npm
+  pip
+  pyenv
+  python
+  rsync
+  web-search
+  zsh_reload
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,11 +120,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Add custom scripts to PATH
 export PATH="$PATH:$HOME/bin"
-
-# ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # --------- Custom Functions --------- #
 

@@ -60,7 +60,7 @@ ssh-keygen -t rsa
 cat ~/.ssh/id_rsa.pub
 ```
 
-You will further be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Asia/Singapore' if you do not specify a value.
+You will further be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Africa/Lusaka' if you do not specify a value.
 
 You will also be asked to provide a `hostname` for your server.
 
@@ -91,6 +91,7 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 
 ## TODO
 
+- [ ] Setup `virtualenvwrapper`
 - [ ] Further server hardening
 - [ ] Setup Postfix
 - [ ] automatic updates and system notifications (logs, etc.)

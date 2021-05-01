@@ -53,7 +53,7 @@ function main() {
   # echo "Installing Network Time Protocol... " 
   configureNTP
 
-  setupHostname
+  # setupHostname
   setupNodeYarn
   setupPython
 
@@ -227,8 +227,8 @@ function setupVim() {
   # Vim setup
   sudo -u "${username}" -H bash -c "sudo -H pip3 install powerline-status"
   sudo apt-get install vim-nox -y
-  sudo -u "${username}" -H bash -c "curl -L https://bit.ly/janus-bootstrap | bash"
-
+  sudo -u "${username}" -H bash -c "curl -L https://gist.githubusercontent.com/engineervix/d9cef5adb520b6c2f2ee0e01e5280f1e/raw/8730b81fb4b18eb4476976520de9672d3335eaee/janus_setup.sh | bash"
+  pushd $HOME/ubuntu-server-setup/
   sudo cp -rv $HOME/ubuntu-server-setup/.janus/ /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.janus/
   sudo cp -v $HOME/ubuntu-server-setup/.vimrc.after /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.vimrc.after
 }

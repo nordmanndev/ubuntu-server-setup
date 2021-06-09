@@ -560,7 +560,7 @@ function installExtraPackages() {
   sudo apt install libreoffice-common aspell hunspell -y
   sudo apt install inkscape -y
   sudo apt install autoconf automake autotools-dev -y
-  sudo apt install pngquant ocrmypdf xvfb rdiff-backup rclone firefox -y
+  sudo apt install pngquant ocrmypdf xvfb rdiff-backup rclone apt-clone firefox -y
   sudo apt install pandoc sqlite3 poppler-utils ncdu libtool -y
   sudo -H pip3 install scour
   

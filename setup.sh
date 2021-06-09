@@ -407,7 +407,7 @@ function setupMail() {
 
   # Now, we deal with /etc/postfix/sasl_passwd
 
-  read -s -p -r 'Sendgrid API key?: ' sendgrid_api_key
+  read -s -p 'Sendgrid API key?: ' sendgrid_api_key
   echo "[smtp.sendgrid.net]:587 apikey:${sendgrid_api_key}" | sudo dd of=/etc/postfix/sasl_passwd
 
   sudo postmap hash:/etc/postfix/sasl_passwd

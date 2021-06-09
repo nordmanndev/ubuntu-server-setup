@@ -6,7 +6,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "./tests/tests.sh"
+    "test": "./tests/tests.sh",
+    "release": "standard-version",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch"
   },
   "repository": {
     "type": "git",
@@ -19,7 +23,8 @@
   },
   "homepage": "https://github.com/engineervix/ubuntu-server-setup#readme",
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "standard-version": "^9.3.0"
   },
   "config": {
     "commitizen": {

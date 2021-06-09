@@ -407,9 +407,12 @@ function setupMail() {
   # /etc/mailname already has ${sendgrid_domain}, so we don't mess with it
 
   # Now, we deal with /etc/postfix/sasl_passwd
-
+  echo -e "\e[35m===========================================================\e[00m" 
+  echo -e "\e[35m Please provide your Sendgrip API key for Postfix to use. \e[00m" 
+  echo -e "\e[35m NOTE: It will not be displayed in the terminal when you type / paste it in\e[00m" 
   read -s -p 'Sendgrid API key?: ' sendgrid_api_key
   echo "[smtp.sendgrid.net]:587 apikey:${sendgrid_api_key}" | sudo dd of=/etc/postfix/sasl_passwd
+  echo -e "\e[35m===========================================================\e[00m" 
 
   sudo postmap hash:/etc/postfix/sasl_passwd
   sudo chown root:root /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db

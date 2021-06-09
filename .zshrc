@@ -142,3 +142,103 @@ grep_this() {
 mkdir_date() {
   mkdir -p $(date '+%Y-%h-%d-%a')
 }
+
+mkv_to_mp4() {
+  # ffmpeg -i "$1" -c:v libx264 -c:a aac -b:a 128k "${1%.*}".mp4
+  ffmpeg -i "$1" -c:v libx264 -c:a aac "${1%.*}".mp4
+}
+
+merge_mp4_m4a() {
+  # argument variables: 1. video file, 2. audio file
+  ffmpeg -i "$1" -i "$2" -c:v copy -c:a copy "${1%.*}"_merged.mp4
+}
+
+merge_webm_m4a() {
+  # argument variables: 1. video file, 2. audio file
+  ffmpeg -i "$1" -i "$2" -c:v copy -c:a copy "${1%.*}"_merged.mkv
+}
+
+# Pass the image width (in pixels) as the first argument,
+# and the quality (in %) as the second argument; for instance:
+# img_resize 1200 85
+img_resize() {
+  mkdir resized
+  mkdir src
+  mv -v *.jpg src/
+  cd src/
+  for f in *.jpg; do
+    convert -resize "$1"x ./"$f" -quality "$2" -verbose ../resized/"${f%.jpg}.jpg"
+  done
+  cd ..
+}
+
+concat_two_videos() {
+  ffmpeg -i "$1" -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate1.ts
+  ffmpeg -i "$2" -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate2.ts
+  ffmpeg -i "concat:intermediate1.ts|intermediate2.ts" -c copy -bsf:a aac_adtstoasc __concatenated_output.mp4
+  rm -v intermediate1.ts
+  rm -v intermediate2.ts
+}
+
+# the following function renames files by replacing spaces with underscores
+# usage: kill_spaces ext
+# where ext is the filetype extension, for example, pdf
+kill_spaces() {
+  find . -name "**.$1" -type f -print0 | while read -d $'\0' f; do mv -v "$f" "${f// /_}"; done
+}
+
+wget_entire_site() {
+  wget --continue --mirror --convert-links --adjust-extension --page-requisites --no-parent "$1"
+}
+
+# encrypt pdf, allow printing
+encrypt_pdf() {
+  encrypted_pdf="${1%.pdf}.128.pdf"
+  pdftk "$1" output ${encrypted_pdf} owner_pw "$2" allow printing verbose
+
+  # rename the files after encryption
+  mv -v "$1" "${1%.pdf}_src.pdf"
+  mv -v ${encrypted_pdf} "${encrypted_pdf%.128.pdf}.pdf"
+}
+
+# split pdf
+split_pdf() {
+  split_files="${1%.pdf}_%02d.pdf"
+  pdftk "$1" burst output ${split_files} verbose
+}
+
+# download audio from youtube
+fetch_audio() {
+  youtube-dl --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality 0 "$1"
+}
+
+# download high quality mp4 video from youtube
+yt_mp4() {
+	youtube-dl -c -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' "$1"
+}
+
+# search a bunch of pdf files in the $(pwd) for selected text
+grep_pdf() {
+  # find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color -i "Using the BIV"' \;
+  find . -iname '*.pdf' | while read filename
+  do
+    pdftotext -enc Latin1 "$filename" - | grep --with-filename --label="$filename" --color -i "$1"
+  done
+}
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# tinypng
+export TINYPNG_API_KEY=''
+
+# sendgrid
+export SENDGRID_API_KEY=''
+
+# snap
+export PATH="$PATH:/snap/bin"
+
+# pyenv
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"

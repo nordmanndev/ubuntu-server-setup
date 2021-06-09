@@ -84,7 +84,7 @@ function main() {
   sudo -i -u "${username}" -H bash -c "chsh -s $(which zsh)"
 
   sudo mv -v "${current_dir}/${output_file}" /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/"${output_file}"
-  sudo rm -fv /home/$username/oh_my_zsh_install.sh
+  sudo rm -fv /home/"${username}"/oh_my_zsh_install.sh
   echo -e "Setup Done! Log file (\e[35m${output_file}\e[00m) is in \e[35m${username}\e[00m's home directory"
 }
 
@@ -159,8 +159,8 @@ function setupHostname() {
   # ref: https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname/
   hostnamectl
   echo "Let's setup a new hostname" 
-  read -p 'hostname: ' myhostname 
-  sudo hostnamectl set-hostname $myhostname
+  read -rp 'hostname: ' myhostname 
+  sudo hostnamectl set-hostname "$myhostname"
 
   cat /etc/hosts
   echo "updating your /etc/hosts file" 
@@ -219,10 +219,10 @@ function setupZSH() {
   sudo apt-get install zsh -y
 
   # ohmyzsh
-  sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /home/$username/oh_my_zsh_install.sh
+  sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /home/"$username"/oh_my_zsh_install.sh
   sudo -i -u "${username}" -H bash -c "ZSH=\"/home/$username/.oh-my-zsh\" sh oh_my_zsh_install.sh --unattended"
-  sudo chown -R "${username}":"${username}" /home/$username/.oh-my-zsh
-  sudo cp -v ${current_dir}/.zshrc /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.zshrc
+  sudo chown -R "${username}":"${username}" /home/"${username}"/.oh-my-zsh
+  sudo cp -v "${current_dir}"/.zshrc /home/"$username"/ && sudo chown -R "${username}":"${username}" /home/"$username"/.zshrc
   sudo -i -u "${username}" -H bash -c "sed -i \"s/root/home\/$username/g\" /home/$username/.zshrc"
   # powerlevel10k
   sudo -i -u "${username}" -H bash -c "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/$username/.oh-my-zsh/custom}/themes/powerlevel10k"
@@ -265,7 +265,7 @@ function setupPythonDev() {
   # virtualenvwrapper
   sudo -H pip3 install virtualenvwrapper
   export WORKON_HOME=/home/$username/Env
-  sudo mkdir -p $WORKON_HOME && sudo chown -R "${username}":"${username}" /home/"${username}"/Env/
+  sudo mkdir -p "$WORKON_HOME" && sudo chown -R "${username}":"${username}" /home/"${username}"/Env/
 
   sudo -i -u "${username}" -H bash -c "echo \"\" >> /home/$username/.zshrc"
   sudo -i -u "${username}" -H bash -c "echo \"# virtualenvwrapper\" >> /home/$username/.zshrc"
@@ -304,9 +304,9 @@ function setupVim() {
   sudo -u "${username}" -H bash -c "sudo -H pip3 install powerline-status"
   sudo apt-get install vim-nox -y
   sudo -u "${username}" -H bash -c "curl -L https://gist.githubusercontent.com/engineervix/d9cef5adb520b6c2f2ee0e01e5280f1e/raw/8730b81fb4b18eb4476976520de9672d3335eaee/janus_setup.sh | bash"
-  pushd $HOME/ubuntu-server-setup/
-  sudo cp -rv $HOME/ubuntu-server-setup/.janus/ /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.janus/
-  sudo cp -v $HOME/ubuntu-server-setup/.vimrc.after /home/$username/ && sudo chown -R "${username}":"${username}" /home/$username/.vimrc.after
+  pushd "$HOME"/ubuntu-server-setup/
+  sudo cp -rv "$HOME"/ubuntu-server-setup/.janus/ /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/.janus/
+  sudo cp -v "$HOME"/ubuntu-server-setup/.vimrc.after /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/.vimrc.after
 }
 
 function setupDatabases() {
@@ -407,7 +407,7 @@ function setupMail() {
 
   # Now, we deal with /etc/postfix/sasl_passwd
 
-  read -s -p 'Sendgrid API key?: ' sendgrid_api_key
+  read -s -p -r 'Sendgrid API key?: ' sendgrid_api_key
   echo "[smtp.sendgrid.net]:587 apikey:${sendgrid_api_key}" | sudo dd of=/etc/postfix/sasl_passwd
 
   sudo postmap hash:/etc/postfix/sasl_passwd
@@ -527,11 +527,11 @@ function miscellaneousTasks() {
   sudo -i -u "${username}" -H bash -c "mkdir -p /home/${username}/${TEMP_DIR}"
 
   # bring in the custom scripts and geckodriver (for selenium)
-  sudo cp -v custom_scripts/create_db /home/$username/bin/
-  sudo cp -v custom_scripts/shrinkpdf /home/$username/bin/
-  sudo wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz -O /home/$username/bin/geckodriver-v0.29.1-linux64.tar.gz
-  sudo tar -xvf /home/$username/bin/geckodriver-v0.29.1-linux64.tar.gz -C /home/$username/bin/
-  sudo rm -v /home/$username/bin/geckodriver-v0.29.1-linux64.tar.gz
+  sudo cp -v custom_scripts/create_db /home/"${username}"/bin/
+  sudo cp -v custom_scripts/shrinkpdf /home/"${username}"/bin/
+  sudo wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz -O /home/"${username}"/bin/geckodriver-v0.29.1-linux64.tar.gz
+  sudo tar -xvf /home/"${username}"/bin/geckodriver-v0.29.1-linux64.tar.gz -C /home/"${username}"/bin/
+  sudo rm -v /home/"${username}"/bin/geckodriver-v0.29.1-linux64.tar.gz
 
 }
 

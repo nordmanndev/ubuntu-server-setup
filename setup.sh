@@ -399,6 +399,7 @@ function setupMail() {
   sudo apt install mutt -y
 
   # First, let's deal with /etc/postfix/main.cf
+  sudo mv -v /etc/postfix/main.cf /etc/postfix/main.cf.bak
   sudo cp -v configuration_files/postfix_main.cf /etc/postfix/main.cf
   sudo sed -i "s/CHANGE_THIS_TO_HOSTNAME/${system_hostname}/g" /etc/postfix/main.cf
   sudo sed -i "s/CHANGETHIS_TO_SENDGRID_DOMAIN/${sendgrid_domain}/g" /etc/postfix/main.cf

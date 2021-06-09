@@ -4,3 +4,4 @@
 !/tests/results/.gitkeep
 /tests/results/*
 Vagrantfile
+node_modules

@@ -1,0 +1,29 @@
+{
+  "name": "ubuntu-server-setup",
+  "version": "0.0.2",
+  "description": "Bash setup script for Ubuntu servers",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./tests/tests.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engineervix/ubuntu-server-setup.git"
+  },
+  "author": "Victor Miti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/engineervix/ubuntu-server-setup/issues"
+  },
+  "homepage": "https://github.com/engineervix/ubuntu-server-setup#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

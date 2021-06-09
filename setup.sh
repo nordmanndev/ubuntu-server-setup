@@ -321,6 +321,7 @@ function setupDatabases() {
   echo "DB_HOST:DB_PORT:DB_NAME:DB_USER:DB_PASSWORD" | tee -a /home/"${username}"/.pgpass
   echo "ANOTHER_DB_HOST:ANOTHER_DB_PORT:ANOTHER_DB_NAME:ANOTHER_DB_USER:ANOTHER_DB_PASSWORD" | tee -a /home/"${username}"/.pgpass
   chmod 600 /home/"${username}"/.pgpass
+  chown "${username}":"${username}" /home/"${username}"/.pgpass
 
   # redis (https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
   sudo apt install redis-server -y

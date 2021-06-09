@@ -97,12 +97,16 @@ cat ~/.ssh/id_rsa.pub
 
 ⌨️ You will also be asked to provide a `hostname` for your server.
 
+⌨️ During configuration of Postgres, you will be asked to specify which role to add and whther they should be a superuser or not.
+
 ⌨️ When setting up Postfix and configuring System Updates and Notification Settings, you'll be asked for
 
 - the System Administrator's email address (to **receive** notifications)
 - the email address that'll be associated with **send**ing emails. This setup uses [Sendgrid](https://sendgrid.com/), so you need to use a Sendgrid verified email address for this.
 
 > This script assumes that the email address you supply is associated with your sendgrid domain. `myhostname` is therefore extracted from this email address. So, if your "mail_from" email address is josh@example.co.zm, then example.co.zm will be used as `myhostname` in the Postfix setup.
+
+⌨️ You will be asked to confirm that you want to have unattended upgrades.
 
 ⌨️ You will also have to specify some **folder names** for
 
@@ -156,6 +160,7 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - [X] automatic updates and system notifications (logs, etc.)
 - [X] setup nginx
 - [X] setup uWSGI
+- [ ] minimize / eliminate user input for some operations like _Unattended upgrades_, _Postgres setup_, etc.
 - [ ] Further server hardening to quench any lurking paranoia 🕵🏿‍♀️💣🧨
 - [ ] Continually improve this README
 - [ ] setup [pyenv](https://github.com/pyenv/pyenv-installer)

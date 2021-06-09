@@ -28,11 +28,10 @@
 > - setup Hostname
 > - setup ZSH and ohmyzsh
 > - install node js and yarn
-> - pip + some python packages
+> - python, pip, virtualenvwrapper + some python packages
 > - simple git customization
 > - ruby
 > - VIM (Janus Distribution)
-> - python
 > - postgres / postgis
 > - nginx
 > - uWSGI
@@ -49,25 +48,24 @@ This is an opinionated setup script to automate the setup and provisioning of Ub
 - Deny root login to the server
 - Setup Uncomplicated Firewall
 - Create Swap file based on machine's installed memory
-- Setup the timezone for the server (Default to "Africa/Lusaka")
+- Setup the timezone for the server (Defaults to "Africa/Lusaka")
 - Install Network Time Protocol
 - Install [ruby](https://www.ruby-lang.org/en/)
-- Install [`python3-pip`](https://packages.ubuntu.com/focal/python3-pip), [`node`](https://nodejs.org/en/) and [`yarn`](https://yarnpkg.com/)
+- Setup [Python](https://www.python.org/), [`python3-pip`](https://packages.ubuntu.com/focal/python3-pip) and `virtualenvwrapper`.
+- Setup [`node`](https://nodejs.org/en/) and [`yarn`](https://yarnpkg.com/) and install some global packages such as `commitizen`, `mdpdf`, `gulp`, `sass`, etc.
 - Setup **ZSH** and [`oh-my-zsh`](https://ohmyz.sh) with the [`powerlevel10k` theme](https://github.com/romkatv/powerlevel10k)
 - Setup [Janus](https://github.com/carlhuda/janus) -- a Vim Distribution designed to provide minimal working environment using the most popular plugins and the most common mappings.
-- Setup [Python](https://www.python.org/) and [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/)
-- Setup [Nginx](https://www.nginx.com/), [Certbot](https://certbot.eff.org/)
-- Setup [Postgres](https://www.postgresql.org/), [PostGIS](https://postgis.net/)
+- Setup [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/)
+- Setup [Nginx](https://www.nginx.com/) and [Certbot](https://certbot.eff.org/)
+- Setup [Postgres](https://www.postgresql.org/) and [PostGIS](https://postgis.net/)
 - Setup [Postfix](http://www.postfix.org/)
 - Plus a whole lot of other things. Have a look at [`setup.sh`](setup.sh) for more details.
 
-@jasonheecs's original project provides an excellent starting point for provisioning Ubuntu Servers. This fork builds on top of that foundation to develop a heavily opinionated setup for deploying Python web applications. The idea is to be able to quickly setup a Linux box and deploy a Python web application without much of a hassle.
+[@jasonheecs](https://github.com/jasonheecs)'s original project provides an excellent starting point for provisioning Ubuntu Servers. This fork builds on top of that foundation to develop a heavily opinionated setup for deploying Python web applications. The idea is to be able to quickly setup a Linux box and deploy a Python web application without much of a hassle.
 
 ## Installation
 
 SSH into your server, update package list and upgrade packages:
-
-> if git isn't installed, install it via `sudo apt-get install git`
 
 ```bash
 apt-get update && apt-get upgrade -y
@@ -95,9 +93,9 @@ cat ~/.ssh/id_rsa.pub
 
 ⌨️ You will further be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Africa/Lusaka' if you do not specify a value.
 
-⌨️ You will also be asked to provide a `hostname` for your server.
+<!-- ⌨️ You will also be asked to provide a `hostname` for your server. -->
 
-⌨️ During configuration of Postgres, you will be asked to specify which role to add and whther they should be a superuser or not.
+⌨️ During configuration of Postgres, you will be asked to specify which role to add and whether they should be a superuser or not.
 
 ⌨️ When setting up Postfix and configuring System Updates and Notification Settings, you'll be asked for
 
@@ -116,7 +114,7 @@ cat ~/.ssh/id_rsa.pub
 
 > These folders are created in the home directory
 
-⌨️ Towards the end, you might be asked for your password when the script attempts to change the default shell to ZSH as the newly created user.
+⌨️ Towards the end, you will be asked for your password when the script attempts to change the default shell to ZSH as the newly created user.
 
 ## Post setup actions
 
@@ -127,7 +125,6 @@ cat ~/.ssh/id_rsa.pub
 - [ ] incorporate [Healthchecks.io](https://healthchecks.io/) in your cron jobs
 - [ ] update `TINYPNG_API_KEY` and `SENDGRID_API_KEY` in `.zshrc`
 - [ ] setup your projects and deploy
-
 
 Here's an example to test that your email works. I use the awesome [mail-tester.com](https://www.mail-tester.com) and with this configuration you should get a 10/10 score.
 
@@ -173,11 +170,11 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - [X] automatic updates and system notifications (logs, etc.)
 - [X] setup nginx
 - [X] setup uWSGI
+- [X] Fix broken tests
+- [ ] setup [pyenv](https://github.com/pyenv/pyenv-installer)
 - [ ] minimize / eliminate user input for some operations like _Unattended upgrades_, _Postgres setup_, etc.
 - [ ] Further server hardening to quench any lurking paranoia 🕵🏿‍♀️💣🧨
 - [ ] Continually improve this README
-- [ ] setup [pyenv](https://github.com/pyenv/pyenv-installer)
-- [X] Fix broken tests
 
 ## References
 

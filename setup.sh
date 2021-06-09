@@ -279,7 +279,7 @@ function setupPythonDev() {
 
   # uwsgi
   sudo -H pip3 install uWSGI
-  sudo mkdir -p uwsgi/sites
+  sudo mkdir -p /etc/uwsgi/sites
   sudo cp -v configuration_files/uwsgi.service /etc/systemd/system/uwsgi.service
   sudo sed -i "s/CHANGE_THIS_TO_USERNAME/${username}/g" /etc/systemd/system/uwsgi.service
   sudo systemctl start uwsgi

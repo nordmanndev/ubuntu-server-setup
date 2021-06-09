@@ -459,7 +459,7 @@ function configureSystemUpdatesAndLogs() {
   sudo sed -i 's#^//Unattended-Upgrade::Automatic-Reboot\ "false"#Unattended-Upgrade::Automatic-Reboot\ "true"#' /etc/apt/apt.conf.d/50unattended-upgrades
   sudo sed -i 's#^//Unattended-Upgrade::Automatic-Reboot-Time\ "02:00"#Unattended-Upgrade::Automatic-Reboot-Time\ "02:17"#' /etc/apt/apt.conf.d/50unattended-upgrades
   echo -e "\e[35m===========================================================\e[00m"
-  echo "APT::Periodic::AutocleanInterval "7";" | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
+  echo "APT::Periodic::AutocleanInterval \"7\";" | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
 
   # logwatch
   # https://www.howtoforge.com/tutorial/logwatch-installation-on-debian-and-ubuntu/

@@ -1,6 +1,6 @@
 {
   "name": "ubuntu-server-setup",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Bash setup script for Ubuntu servers",
   "directories": {
     "test": "tests"

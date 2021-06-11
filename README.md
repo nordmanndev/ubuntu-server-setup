@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.com/engineervix/ubuntu-server-setup.svg?branch=master)](https://travis-ci.com/engineervix/ubuntu-server-setup)
 [![last commit](https://badgen.net/github/last-commit/engineervix//ubuntu-server-setup)](https://github.com/engineervix/ubuntu-server-setup/commits/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -19,6 +21,7 @@
 - [TODO](#todo)
 - [References](#references)
   - [security](#security)
+- [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -197,3 +200,7 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - <https://www.ubuntu.com/security>
 - <https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts>
 - <https://www.digitalocean.com/community/questions/best-practices-for-hardening-new-sever-in-2017>
+
+## Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md). This project uses [allcontributors.org](https://allcontributors.org).

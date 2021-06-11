@@ -123,20 +123,30 @@ cat ~/.ssh/id_rsa.pub
 - [ ] Reboot and login as the new user
 - [ ] Test your email configuration. See example below:
 - [ ] configure rclone, backup scripts and cron jobs for daily backups
-- [ ] setup [certbot-dns-cloudflare](https://certbot-dns-cloudflare.readthedocs.io/) plugin and ensure that your SSL certificates automatically renew
+- [ ] setup [certbot-dns-cloudflare](https://certbot-dns-cloudflare.readthedocs.io/) plugin and ensure that your SSL certificates automatically renew. See an example snippet below for obtaining certificate.
 - [ ] incorporate [Healthchecks.io](https://healthchecks.io/) in your cron jobs
 - [ ] update `TINYPNG_API_KEY` and `SENDGRID_API_KEY` in `.zshrc`
 - [ ] setup your projects and deploy
 
 Here's an example to test that your email works. I use the awesome [mail-tester.com](https://www.mail-tester.com) and with this configuration you should get a 10/10 score.
 
-```sh
+```bash
 sendmail -f sender@example.com recipient@someplace.com
 From: sender@example.com
 To: recipient@someplace.com
 Subject: This looks like a test
-Hi there, this is my message, and I'm sending it to you!
+Hi there, this is my message, and I am sending it to you!
 .
+```
+
+Obtaining an SSL Cetificate using the [certbot-dns-cloudflare](https://certbot-dns-cloudflare.readthedocs.io/) plugin:
+
+```bash
+sudo certbot certonly \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials /path/to/your/cloudflare_configuration.ini \
+  -d www.example.co.zm \
+  -d example.co.zm
 ```
 
 ## Supported versions
@@ -173,6 +183,7 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - [X] setup nginx
 - [X] setup uWSGI
 - [X] Fix broken tests
+- [ ] Check the git config, I think it doesn't work because the command needs to be run as the new user
 - [ ] setup [pyenv](https://github.com/pyenv/pyenv-installer)
 - [ ] minimize / eliminate user input for some operations like _Unattended upgrades_, _Postgres setup_, etc.
 - [ ] Further server hardening to quench any lurking paranoia 🕵🏿‍♀️💣🧨

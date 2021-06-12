@@ -70,13 +70,7 @@ This is an opinionated setup script to automate the setup and provisioning of Ub
 
 ## Installation
 
-SSH into your server, update package list and upgrade packages:
-
-```bash
-apt-get update && apt-get upgrade -y
-```
-
-Clone this repository (& submodules) into your home directory, and run the setup script:
+SSH into your server, clone this repository (& submodules) into your home directory, and run the setup script:
 
 ```bash
 cd ~
@@ -87,7 +81,7 @@ git clone --recurse-submodules https://github.com/engineervix/ubuntu-server-setu
 
 ## Setup prompts
 
-⌨️ When the setup script is run, you will be prompted to enter the username and password of the new user account, as well as Global Git Name and Email Address.
+⌨️ When the setup script is run, you will be prompted to enter the username and password of the new user account, as well as Global Git Name and E-mail Address.
 
 ⌨️ Following that, you will then be prompted to add a public ssh key (which should be from your local machine) for the new account. To generate an ssh key from your local machine:
 
@@ -186,7 +180,7 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - [X] setup nginx
 - [X] setup uWSGI
 - [X] Fix broken tests
-- [ ] Check the git config, I think it doesn't work because the command needs to be run as the new user
+- [x] Check the git config, I think it doesn't work because the command needs to be run as the new user
 - [ ] setup [pyenv](https://github.com/pyenv/pyenv-installer)
 - [ ] minimize / eliminate user input for some operations like _Unattended upgrades_, _Postgres setup_, etc.
 - [ ] Further server hardening to quench any lurking paranoia 🕵🏿‍♀️💣🧨

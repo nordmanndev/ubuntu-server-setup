@@ -1,6 +1,8 @@
 # core
 Sphinx
 sphinx-rtd-theme
+readthedocs-sphinx-search
+sphinx-hoverxref
 
 # dev
 black

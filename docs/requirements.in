@@ -1,0 +1,12 @@
+# core
+Sphinx
+sphinx-rtd-theme
+
+# dev
+black
+flake8
+pip-tools
+powerline-status
+restructuredtext_lint
+rstcheck
+watchdog

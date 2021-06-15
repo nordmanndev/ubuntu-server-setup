@@ -5,3 +5,4 @@
 /tests/results/*
 Vagrantfile
 node_modules
+.vscode/

@@ -209,10 +209,10 @@ function setupNodeYarn() {
 
 function setupGit() {
   # Configure git
-  execAsUser "${username}" "git config --global color.ui true"
+  sudo -i -u "${username}" -H bash -c "git config --global color.ui true"
 
-  execAsUser "${username}" "git config --global user.name \"${git_name}\""
-  execAsUser "${username}" "git config --global user.email \"${git_email}\""
+  sudo -i -u "${username}" -H bash -c "git config --global user.name \"${git_name}\""
+  sudo -i -u "${username}" -H bash -c "git config --global user.email \"${git_email}\""
 }
 
 function setupZSH() {
@@ -362,10 +362,9 @@ function setupWebServer() {
   sudo mkdir -p /var/www/letsencrypt/.well-known/
 
   # Cloudflare's Authenticated Origin Pulls feature. See
-  # - https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull
-  # - https://community.cloudflare.com/t/authenticated-origin-pulls-feature/137285/15
+  # https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull#zone-level--cloudflare-certificate
   sudo mkdir -p /etc/letsencrypt/cloudflare/
-  sudo wget https://support.cloudflare.com/hc/en-us/article_attachments/360044928032/origin-pull-ca.pem -O /etc/letsencrypt/cloudflare/origin-pull-ca.pem
+  sudo cp -v  configuration_files/origin-pull-ca.pem /etc/letsencrypt/cloudflare/origin-pull-ca.pem
 
   echo "#!/bin/bash" | sudo tee /root/letsencrypt.sh
   echo "systemctl reload nginx" | sudo tee -a /root/letsencrypt.sh

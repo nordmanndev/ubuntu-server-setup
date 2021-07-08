@@ -537,6 +537,7 @@ function miscellaneousTasks() {
   sudo tar -xvf /home/"${username}"/bin/geckodriver-v0.29.1-linux64.tar.gz -C /home/"${username}"/bin/
   sudo rm -v /home/"${username}"/bin/geckodriver-v0.29.1-linux64.tar.gz
 
+  sudo chown -R "${username}":"${username}" /home/"${username}"/bin/
 }
 
 function installExtraPackages() {
@@ -546,12 +547,6 @@ function installExtraPackages() {
 
   # pdftk
   sudo snap install pdftk
-  # sudo -i -u "${username}" -H bash -c "echo \"\" >> /home/$username/.zshrc"
-  # sudo -i -u "${username}" -H bash -c "echo \"\" >> /home/$username/.bashrc"
-  # sudo -i -u "${username}" -H bash -c "echo \"# snap\" >> /home/$username/.zshrc"
-  # sudo -i -u "${username}" -H bash -c "echo \"# snap\" >> /home/$username/.bashrc"
-  # sudo -i -u "${username}" -H bash -c "echo 'export PATH=\"$PATH:/snap/bin\"' >> /home/$username/.zshrc"
-  # sudo -i -u "${username}" -H bash -c "echo 'export PATH=\"$PATH:/snap/bin\"' >> /home/$username/.bashrc"
 
   # ffmpeg, youtube-dl and more
   sudo apt install ffmpeg -y

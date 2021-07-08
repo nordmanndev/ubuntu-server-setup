@@ -286,14 +286,15 @@ function setupPythonDev() {
   sudo systemctl enable uwsgi
 
   # celery
+  # setup based on https://importthis.tech/djangocelery-from-development-to-production
   sudo useradd celery -d /home/celery -b /bin/bash
   sudo mkhomedir_helper celery
 
-  sudo mkdir /var/log/celery
+  sudo mkdir -p /var/log/celery
   sudo chown -R celery:celery /var/log/celery
   sudo chmod -R 755 /var/log/celery
 
-  sudo mkdir /var/run/celery
+  sudo mkdir -p /var/run/celery
   sudo chown -R celery:celery /var/run/celery
   sudo chmod -R 755 /var/run/celery
 

@@ -1,8 +1,10 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented here.
 
-## [1.0.0](https://github.com/engineervix/ubuntu-server-setup/compare/v0.0.2...v1.0.0) (2021-06-09)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [v1.0.0](https://github.com/engineervix/ubuntu-server-setup/compare/v0.0.2...v1.0.0) (2021-06-09)
 
 
 ### Features
@@ -46,6 +48,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Others
 
+* **release:** 1.0.0 ([07d631d](https://github.com/engineervix/ubuntu-server-setup/commit/07d631d29f217080325d841218df8f50d5294181))
 * add commitizen ([a779c01](https://github.com/engineervix/ubuntu-server-setup/commit/a779c0163a3d89cd5c294eebfaedf8e13dfa528f))
 * add configuration specs for standard-version ([83d644e](https://github.com/engineervix/ubuntu-server-setup/commit/83d644ea473e79d96b5eb2f0c20af2e82518a5ad))
 * add example for testing email setup ([9c685d3](https://github.com/engineervix/ubuntu-server-setup/commit/9c685d3cb8b3f737b610a7b093a0375f07d8a1cf))
@@ -56,3 +59,7 @@ All notable changes to this project will be documented in this file. See [standa
 * modify setup to suit DigitalOcean Ubuntu Droplets ([976272a](https://github.com/engineervix/ubuntu-server-setup/commit/976272a1e909944106b70b8cf2aa441e1d9fca13))
 * update .zshrc ([9ed7809](https://github.com/engineervix/ubuntu-server-setup/commit/9ed7809530ffbff996613d8e484be983cba040fe))
 * update LICENSE ([394fad0](https://github.com/engineervix/ubuntu-server-setup/commit/394fad0b7bc1ae943ee76ef6b7a1605ad62cb0f7))
+
+## [v0.0.2](https://github.com/engineervix/ubuntu-server-setup/compare/v0.0.1...v0.0.2) (2021-02-09)
+
+## [v0.0.1](https://github.com/engineervix/ubuntu-server-setup/compare/6ce63c9e1b58232c993f4fc8bf2ccbac5af6026d...v0.0.1) (2021-02-09)

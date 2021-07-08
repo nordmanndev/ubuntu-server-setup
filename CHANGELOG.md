@@ -4,6 +4,51 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.0.0...v1.1.0) (2021-07-08)
+
+
+### Bug Fixes
+
+* add a `-p` flag when creating directories for the celery config ([a9a0530](https://github.com/engineervix/ubuntu-server-setup/commit/a9a05308ed94b739d6a08442ba63651956e9ac85))
+* bugfix due to GPG error: NO_PUBKEY 9DE922F1C2FDE6C4 when installing lynis ([f4ae37e](https://github.com/engineervix/ubuntu-server-setup/commit/f4ae37e05b7701eed15a54a13a0e74c727ea87fd))
+* change ownership of `.pgpass` from root to newly created user ([574a164](https://github.com/engineervix/ubuntu-server-setup/commit/574a16456492c4847187ec2fc1af92df1aea071e))
+* correct the directory for uwsgi project configurations ([02c594f](https://github.com/engineervix/ubuntu-server-setup/commit/02c594f0817d1fbe1683e87e2e899699ca9f8d8b))
+* rename configuration_files/origin-pull-ca.pem.ca to configuration_files/origin-pull-ca.pem ([3e8a6b4](https://github.com/engineervix/ubuntu-server-setup/commit/3e8a6b4e8f05b7347e7db6133461b7e2b4affd7a))
+* repair broken setupGit function and deal with 404 on origin-pull-ca.pem ([b18c8f9](https://github.com/engineervix/ubuntu-server-setup/commit/b18c8f918069814a3623199cb3976bcc970c5074))
+* use the correct format for Cloudflare's Authenticated Origin Pulls feature ([9148cae](https://github.com/engineervix/ubuntu-server-setup/commit/9148caef483256f3d1108aca09bfcd48a8e93a07))
+
+
+### Code Refactoring
+
+* include system update and fix git config ([#2](https://github.com/engineervix/ubuntu-server-setup/issues/2)) ([6ecb2b3](https://github.com/engineervix/ubuntu-server-setup/commit/6ecb2b3f490a063a8a64b076d71b9b20002c04f6))
+
+
+### Docs
+
+* add readthedocs badge ([a25c61d](https://github.com/engineervix/ubuntu-server-setup/commit/a25c61d9af66b8ad992120787c51f6644aecf5d3))
+* write detailed docs for hosting on readthedocs ([93eacc9](https://github.com/engineervix/ubuntu-server-setup/commit/93eacc93ac8f31a06f40056bf8cfeb8a825853a8))
+* **contributing:** add contribution guidelines ([a0037dc](https://github.com/engineervix/ubuntu-server-setup/commit/a0037dc1a0d132fc2f60be46bb100fca97625e59))
+* **readme:** add example usage of certbot-dns-cloudflare ([900032c](https://github.com/engineervix/ubuntu-server-setup/commit/900032c9757954781281ede0f918e18ab20df109))
+* **readme:** reorganize README after incorporation of all-contributors ([518c26a](https://github.com/engineervix/ubuntu-server-setup/commit/518c26a91c907245d5989cba06589b4d0dc063f7))
+* add muse-sisay as a contributor for code, bug ([#3](https://github.com/engineervix/ubuntu-server-setup/issues/3)) ([caced93](https://github.com/engineervix/ubuntu-server-setup/commit/caced9392fb796f07de853ad92cf3e273843adf8))
+* **readme:** add section on contributing, add all-contributors info and badge ([b19b65a](https://github.com/engineervix/ubuntu-server-setup/commit/b19b65a9dbb3e3e21d8f2e1d2682ccd6a9223a68))
+
+
+### Others
+
+* change ownership of ~/bin/ directory to the new user ([0813e72](https://github.com/engineervix/ubuntu-server-setup/commit/0813e7201ab12dff1013f51258d041476d15438f))
+* customization of changelog generation ([1d3f4ed](https://github.com/engineervix/ubuntu-server-setup/commit/1d3f4ed1050f17abbcd8251c7f2b8ca37159b9e7))
+* install apt-clone ([c629712](https://github.com/engineervix/ubuntu-server-setup/commit/c629712cf64c10cfddba438a81da5d40d4242aaf))
+* regenerate and reformat changelog using standard version ([7bba42a](https://github.com/engineervix/ubuntu-server-setup/commit/7bba42adcbbc801c2dcd2e85a3187f448a6ff8ed))
+* remove standard-version release-as ... scripts ([bedcc1f](https://github.com/engineervix/ubuntu-server-setup/commit/bedcc1f51044edb6967b0ed4e30c7811b4388d08))
+* **docs:** add some cool sphinx extensions ([1bbca24](https://github.com/engineervix/ubuntu-server-setup/commit/1bbca24742056bbfc7b2033862e937a59f95403e))
+* **package.json:** add shellcheck script ([3080dcc](https://github.com/engineervix/ubuntu-server-setup/commit/3080dcce92725f8cef3d2c1c8e7eb165e92aff10))
+
+
+### CI
+
+* automation of release process ([80a5d76](https://github.com/engineervix/ubuntu-server-setup/commit/80a5d76847c56b5c8df7d64a3f85040f6c21bd0e))
+
 ## [v1.0.0](https://github.com/engineervix/ubuntu-server-setup/compare/v0.0.2...v1.0.0) (2021-06-09)
 
 

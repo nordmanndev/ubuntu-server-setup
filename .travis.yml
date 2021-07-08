@@ -14,3 +14,19 @@ before_install:
 script:
   - bash -c 'shopt -s globstar; shellcheck ./*.sh; shellcheck ./tests/*.sh'
   - bash tests/unit-tests.sh -skip
+before_deploy:
+- sudo apt-get install -y python3-pip
+- python3 custom_scripts/get_release_notes.py
+- export TODAY="($(TZ=Africa/Lusaka date --iso))"
+- export RELEASE_NAME="$TRAVIS_TAG $TODAY"
+deploy:
+  - provider: releases
+    api_key:
+      secure: "rqYezm6aYavFDoZwxkF+H4UKazIKS3v+0Y60B/uuuVjTMx7NbM+IEytQolFtV4PJzyAwdW5uSezzWiENPDZYQ1mtAkXTZdCRoA3zp5XYIfLvxyzAj0eDUQiswbFRgOkdHVrp74TpgDRRa2dYg7b+WxpjXRnGedG7NZQ/5rOV7D+ojfAdlqFReZ9/FFL802CgLRLTG8V6wFRPo2yy1zC3oOvuwAzuT+b6CMZcO9V5VKFxATgGr6oDFBOSYigck3ec6p++uSrVzgcIUyIlnhOwBPmuRWXsSbx+ulMRyz+sgvylp7JQVs/685FoHm1OKbyHsrh+SB6th8Fq7HnqtMwvPnAL+pmJ3N6ZZSh/WUO9DvdXAa+mHoY9O79LjURdabkZd2hJwvfu/40WRr86sg32X7Uz8oVjHp+b3JHNZLwt6CdmrzeNHUgMOoO+qByZuL2nEmLKo1bHRvKotzDNWNl6tEdeMZkzzkDQwSw/tLlJ46+BKVDKtYXTXYavJqnstgtm4Zx4VsAAH6dJkJcT3ckM/pAOQKeioZUpxzJDx3PR+Gt4E4CfBSi1ioiJJV0PDUphYpJ30WBi4O4mmLjN1SD14nhTWMN3FQG8W4gvtiRLtI5MIFQcljaAAADl+ER2bI7/fuH6lq3Huc0yAXVUj5RMdYDYxGhpQjp+40OFHA5D12s="
+    skip_cleanup: true
+    edge: true
+    name: $RELEASE_NAME
+    release_notes_file: "$HOME/LATEST_RELEASE_NOTES.md"
+    on:
+      tags: true
+      repo: engineervix/ubuntu-server-setup

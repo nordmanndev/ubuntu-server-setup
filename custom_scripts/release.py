@@ -4,6 +4,13 @@
 
 to help in managing releases using `standard-version`_.
 
+Usage in this project:
+    npm run new_release -- [major | minor | patch]
+
+NOTE: Before running the script, manually bump the version
+in docs/conf.py and stage the file 
+(TODO: Need to figure out how to automate this as well)
+
 .. _standard-version: https://github.com/conventional-changelog/standard-version
 """
 

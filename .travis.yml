@@ -27,6 +27,7 @@ deploy:
     edge: true
     name: $RELEASE_NAME
     release_notes_file: "$HOME/LATEST_RELEASE_NOTES.md"
+    draft: true
     on:
       tags: true
       repo: engineervix/ubuntu-server-setup

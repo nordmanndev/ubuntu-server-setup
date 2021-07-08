@@ -8,7 +8,8 @@
   "scripts": {
     "test": "./tests/tests.sh",
     "shellcheck": "bash -c 'shopt -s globstar; shellcheck ./*.sh; shellcheck ./tests/*.sh'",
-    "release": "standard-version"
+    "release": "standard-version",
+    "new_release": "python3 custom_scripts/release.py"
   },
   "repository": {
     "type": "git",

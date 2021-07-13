@@ -311,6 +311,7 @@ function setupVim() {
 }
 
 function setupDatabases() {
+  ########## Databases + Caching
   # postgres
   sudo apt install postgresql postgresql-contrib postgis libpq-dev -y
   # Note this when dealing with older versions of Django (pre 1.11.x)
@@ -331,6 +332,13 @@ function setupDatabases() {
   sudo sed 's/^supervised\ no/supervised\ systemd/' -i /etc/redis/redis.conf
   sudo systemctl restart redis.service
 
+  # memcached
+  sudo apt install memcached libmemcached-tools -y
+  echo "" | sudo tee -a /etc/memcached.conf
+  echo "# disable UDP (while leaving TCP unaffected)" | sudo tee -a /etc/memcached.conf
+  echo "-U 0" | sudo tee -a /etc/memcached.conf
+  sudo systemctl restart memcached
+  sudo netstat -plunt
 }
 
 function setupWebServer() {

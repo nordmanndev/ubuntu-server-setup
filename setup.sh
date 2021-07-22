@@ -564,7 +564,7 @@ function installExtraPackages() {
   sudo apt install inkscape -y
   sudo apt install autoconf automake autotools-dev -y
   sudo apt install pngquant ocrmypdf xvfb rdiff-backup rclone apt-clone firefox -y
-  sudo apt install pandoc sqlite3 poppler-utils ncdu libtool -y
+  sudo apt install pandoc sqlite3 poppler-utils ncdu libtool dos2unix -y
   sudo -H pip3 install scour
   
   # install texlive-full

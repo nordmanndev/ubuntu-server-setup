@@ -1,18 +1,59 @@
 {
   "header": "# Changelog\n\nAll notable changes to this project will be documented here.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n",
   "types": [
-    {"type": "chore", "section":"Others", "hidden": false},
-    {"type": "revert", "section":"Reverts", "hidden": true},
-    {"type": "feat", "section": "Features", "hidden": false},
-    {"type": "fix", "section": "Bug Fixes", "hidden": false},
-    {"type": "improvement", "section": "Feature Improvements", "hidden": false},
-    {"type": "docs", "section":"Docs", "hidden": false},
-    {"type": "style", "section":"Styling", "hidden": false},
-    {"type": "refactor", "section":"Code Refactoring", "hidden": false},
-    {"type": "perf", "section":"Performance Improvements", "hidden": false},
-    {"type": "test", "section":"Tests", "hidden": false},
-    {"type": "build", "section":"Build System", "hidden": false},
-    {"type": "ci", "section":"CI", "hidden":false}
+      {
+        "type": "feat",
+        "section": "🚀 Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐛 Bug Fixes"
+      },
+      {
+        "type": "docs",
+        "section": "📝 Docs",
+        "hidden": false
+      },
+      {
+        "type": "style",
+        "section": "💄 Styling",
+        "hidden": false
+      },
+      {
+        "type": "refactor",
+        "hidden": false,
+        "section": "♻️ Code Refactoring"
+      },
+      {
+        "type": "perf",
+        "section": "⚡️ Performance Improvements",
+        "hidden": false
+      },
+      {
+        "type": "test",
+        "section": "✅ Tests",
+        "hidden": false
+      },
+      {
+        "type": "build",
+        "section": "⚙️ Build System",
+        "hidden": false
+      },
+      {
+        "type": "ci",
+        "section": "👷 CI/CD",
+        "hidden": false
+      },
+      {
+        "type": "chore",
+        "section": "🚧 Others",
+        "hidden": true
+      },
+      {
+        "type": "revert",
+        "section": "⏪️ Reverts",
+        "hidden": true
+      }
   ],
   "scripts": {
     "prechangelog": "sed -e '1,6d' -i CHANGELOG.md",

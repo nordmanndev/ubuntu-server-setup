@@ -203,6 +203,7 @@ function setupNodeYarn() {
   sudo npm install -g sass
   sudo npm install -g semantic-release-cli
   sudo npm install -g serve
+  sudo npm install -g standard-version
   sudo npm install -g svgo
   sudo npm install -g uglify-js
 }

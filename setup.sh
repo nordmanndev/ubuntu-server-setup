@@ -63,6 +63,7 @@ function main() {
   setupRuby
   setupPythonDev
   setupVim
+  setupTmux
   setupDatabases
   setupWebServer
   setupMail
@@ -194,6 +195,7 @@ function setupNodeYarn() {
   sudo npm install -g html-minifier
   sudo npm install -g grunt-cli
   sudo npm install -g gulp-cli
+  sudo npm install -g lerna
   sudo npm install -g lite-server
   sudo npm install -g local-cors-proxy
   sudo npm install -g maildev
@@ -223,7 +225,7 @@ function setupZSH() {
   sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /home/"$username"/oh_my_zsh_install.sh
   sudo -i -u "${username}" -H bash -c "ZSH=\"/home/$username/.oh-my-zsh\" sh oh_my_zsh_install.sh --unattended"
   sudo chown -R "${username}":"${username}" /home/"${username}"/.oh-my-zsh
-  sudo cp -v "${current_dir}"/.zshrc /home/"$username"/ && sudo chown -R "${username}":"${username}" /home/"$username"/.zshrc
+  sudo cp -v "${current_dir}"/configuration_files/.zshrc /home/"$username"/ && sudo chown -R "${username}":"${username}" /home/"$username"/.zshrc
   sudo -i -u "${username}" -H bash -c "sed -i \"s/root/home\/$username/g\" /home/$username/.zshrc"
   # powerlevel10k
   sudo -i -u "${username}" -H bash -c "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/$username/.oh-my-zsh/custom}/themes/powerlevel10k"
@@ -247,11 +249,26 @@ function setupZSH() {
 
   sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
+  # https://github.com/zsh-users/zsh-autosuggestions
+  sudo -i -u "${username}" -H bash -c "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/$username/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
+  # https://github.com/zsh-users/zsh-syntax-highlighting
+  sudo -i -u "${username}" -H bash -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/$username/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+
   echo -e "\e[35min order to use your fancy new ZSH setup, you'll have to later exit terminal and enter a new session\e[00m" 
 }
 
 function setupRuby() {
   sudo apt-get install ruby-full ruby-bundler -y
+}
+
+function setupTmux() {
+  # tmux is already installed, no need to install it using apt install
+  sudo apt install powerline -y
+  # https://github.com/tmux-plugins/tpm
+  sudo -i -u "${username}" -H bash -c "git clone https://github.com/tmux-plugins/tpm /home/$username/.tmux/plugins/tpm"
+  sudo cp -v "${current_dir}"/configuration_files/.tmux.conf /home/"$username"/ && sudo chown -R "${username}":"${username}" /home/"$username"/.tmux.conf
+  sudo -i -u "${username}" -H bash -c "tmux source /home/$username/.tmux.conf"
 }
 
 function setupPythonDev() {
@@ -287,18 +304,15 @@ function setupPythonDev() {
   sudo systemctl enable uwsgi
 
   # celery
-  # setup based on https://importthis.tech/djangocelery-from-development-to-production
+  
+  ## setup based on https://importthis.tech/djangocelery-from-development-to-production
   sudo useradd celery -d /home/celery -b /bin/bash
   sudo mkhomedir_helper celery
 
-  sudo mkdir -p /var/log/celery
-  sudo chown -R celery:celery /var/log/celery
-  sudo chmod -R 755 /var/log/celery
-
-  sudo mkdir -p /var/run/celery
-  sudo chown -R celery:celery /var/run/celery
-  sudo chmod -R 755 /var/run/celery
-
+  ## also see https://www.willandskill.se/en/celery-4-with-django-on-ubuntu-18-04/
+  sudo touch /etc/tmpfiles.d/celery.conf
+  echo "d /var/run/celery 0755 celery celery -" | sudo tee -a /etc/tmpfiles.d/celery.conf
+  echo "d /var/log/celery 0755 celery celery -" | sudo tee -a /etc/tmpfiles.d/celery.conf
 }
 
 function setupVim() {
@@ -308,7 +322,7 @@ function setupVim() {
   sudo -u "${username}" -H bash -c "curl -L https://gist.githubusercontent.com/engineervix/d9cef5adb520b6c2f2ee0e01e5280f1e/raw/8730b81fb4b18eb4476976520de9672d3335eaee/janus_setup.sh | bash"
   pushd "$HOME"/ubuntu-server-setup/
   sudo cp -rv "$HOME"/ubuntu-server-setup/.janus/ /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/.janus/
-  sudo cp -v "$HOME"/ubuntu-server-setup/.vimrc.after /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/.vimrc.after
+  sudo cp -v "$HOME"/ubuntu-server-setup/configuration_files/.vimrc.after /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/.vimrc.after
 }
 
 function setupDatabases() {
@@ -568,6 +582,15 @@ function installExtraPackages() {
   sudo apt install pandoc sqlite3 poppler-utils ncdu libtool dos2unix -y
   sudo -H pip3 install scour
   
+  # https://github.com/travis-ci/travis.rb
+  gem install travis --no-document
+
+  # https://github.com/athityakumar/colorls
+  gem install colorls
+
+  # https://volta.sh/
+  sudo -i -u "${username}" -H bash -c "curl https://get.volta.sh | bash"
+
   # install texlive-full
   sudo apt install texlive-full -y  # this may take a while
 

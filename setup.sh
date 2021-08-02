@@ -471,7 +471,8 @@ function configureSystemUpdatesAndLogs() {
   sudo sed -i "s/^EMAIL=\"\"/EMAIL=\"$root_email\"/" /etc/apticron/apticron.conf
   echo -e "\e[35m===========================================================\e[00m"
   sudo apt install apt-show-versions -y
-  sudo dpkg-reconfigure -plow unattended-upgrades
+  # sudo dpkg-reconfigure -plow unattended-upgrades
+  echo "unattended-upgrades       unattended-upgrades/enable_auto_updates boolean true" | sudo debconf-set-selections; sudo dpkg-reconfigure -f noninteractive unattended-upgrades
   echo -e "\e[35m===========================================================\e[00m"
   echo "I am now configuring the Unattended Upgrades package ..."
   #   sudo vim /etc/apt/apt.conf.d/50unattended-upgrades

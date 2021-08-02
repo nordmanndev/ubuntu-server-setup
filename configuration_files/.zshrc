@@ -74,6 +74,9 @@ plugins=(
   colored-man-pages
   colorize
   command-not-found
+	common-aliases
+  docker
+  docker-compose
   django
   extract
   git
@@ -86,8 +89,14 @@ plugins=(
   pyenv
   python
   rsync
+  ssh-agent
+  sudo
+  tmux
   web-search
+  yarn
+  zsh-autosuggestions
   zsh_reload
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -242,3 +251,11 @@ export PATH="$PATH:/snap/bin"
 # export PATH="$HOME/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+
+# https://github.com/athityakumar/colorls
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+if [ -x "$(command -v colorls)" ]; then
+    alias ls="colorls"
+    alias la="colorls -alh"
+fi

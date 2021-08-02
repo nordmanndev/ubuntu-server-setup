@@ -110,7 +110,7 @@ Additional Server Hardening
 -----------------------------
 
 - restrict access to the server by specifying who is allowed to login
-- Secure shared memory
+- secure shared memory
 - fail2ban
 - lynis
 - rkhunter
@@ -118,37 +118,40 @@ Additional Server Hardening
 Additional Packages
 --------------------
 
-* Redis
-* Memcached
-* TeX-Live
-* openjdk-8-jdk
-* travis cli
-* wkhtmltopdf
-* pdftk
-* ffmpeg
-* youtube-dl
-* rclone
-* volta
-* pngquant
-* ocrmypdf
-* xvfb
-* rdiff-backup
-* apt-clone
-* firefox
-* pandoc
-* sqlite3
-* poppler-utils
-* ncdu
-* libtool
-* dos2unix
-* scour
-* inkscape
-* libreoffice-common
-* autoconf, automake and autotools-dev
-* aspell and hunspell
+.. hlist::
+    :columns: 2
+
+    - Redis
+    - Memcached
+    - TeX-Live
+    - openjdk-8-jdk
+    - travis cli
+    - wkhtmltopdf
+    - pdftk
+    - ffmpeg
+    - youtube-dl
+    - rclone
+    - volta
+    - pngquant
+    - ocrmypdf
+    - xvfb
+    - rdiff-backup
+    - apt-clone
+    - firefox
+    - pandoc
+    - sqlite3
+    - poppler-utils
+    - ncdu
+    - libtool
+    - dos2unix
+    - scour
+    - inkscape
+    - libreoffice-common
+    - autoconf, automake and autotools-dev
+    - aspell and hunspell
 
 Miscellaneous Tasks
 --------------------
 
-- custom scripts and tools (e.g. `geckodriver <https://github.com/mozilla/geckodriver>`_) in ``$HOME/bin```
+- custom scripts and tools (e.g. `geckodriver <https://github.com/mozilla/geckodriver>`_) in ``$HOME/bin``
 - custom directories for projects, backups and misc/temp

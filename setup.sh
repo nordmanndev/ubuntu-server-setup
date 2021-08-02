@@ -268,7 +268,8 @@ function setupTmux() {
   # https://github.com/tmux-plugins/tpm
   sudo -i -u "${username}" -H bash -c "git clone https://github.com/tmux-plugins/tpm /home/$username/.tmux/plugins/tpm"
   sudo cp -v "${current_dir}"/configuration_files/.tmux.conf /home/"$username"/ && sudo chown -R "${username}":"${username}" /home/"$username"/.tmux.conf
-  sudo -i -u "${username}" -H bash -c "tmux source /home/$username/.tmux.conf"
+  # gives "error connecting to /tmp//tmux-1000/default (No such file or directory)"
+  # sudo -i -u "${username}" -H bash -c "tmux source /home/$username/.tmux.conf"
 }
 
 function setupPythonDev() {

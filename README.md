@@ -95,8 +95,6 @@ cat ~/.ssh/id_rsa.pub
 
 <!-- ⌨️ You will also be asked to provide a `hostname` for your server. -->
 
-⌨️ During configuration of Postgres, you will be asked to specify which role to add and whether they should be a superuser or not.
-
 ⌨️ When setting up Postfix and configuring System Updates and Notification Settings, you'll be asked for
 
 - the System Administrator's email address (to **receive** notifications)
@@ -183,7 +181,7 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - [X] Fix broken tests
 - [X] Check the git config, I think it doesn't work because the command needs to be run as the new user
 - [ ] setup [pyenv](https://github.com/pyenv/pyenv-installer)
-- [ ] minimize / eliminate user input for some operations like ~~_Unattended upgrades_~~ ([#7e0646](https://github.com/engineervix/ubuntu-server-setup/commit/7e0646a337f71bfeb1f9e88b2d5ab6193e564401)), _Postgres setup_, etc.
+- [ ] minimize / eliminate user input for some operations like ~~_Unattended upgrades_~~ ([#7e0646](https://github.com/engineervix/ubuntu-server-setup/commit/7e0646a337f71bfeb1f9e88b2d5ab6193e564401)), ~~_Postgres setup_~~ ([#8b18b7](https://github.com/engineervix/ubuntu-server-setup/commit/8b18b75d2c4a3ea767ef685d85ed52503d0e750e)), etc.
 - [ ] Further server hardening to quench any lurking paranoia 🕵🏿‍♀️💣🧨
 - [ ] Continually improve this README
 

@@ -332,7 +332,7 @@ function setupDatabases() {
   sudo apt install postgresql postgresql-contrib postgis libpq-dev -y
   # Note this when dealing with older versions of Django (pre 1.11.x)
   # https://stackoverflow.com/questions/18643998/geodjango-geosexception-error
-  sudo -Hiu postgres createuser --interactive
+  sudo -Hiu postgres createuser "${username}" --superuser
   sudo -Hiu postgres createdb "${username}"
   # take note of http://initd.org/psycopg/docs/install.html#prerequisites
 

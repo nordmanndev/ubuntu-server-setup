@@ -10,7 +10,7 @@ GitHub releases.
 """
 
 import os
-from pathlib import Path
+# from pathlib import Path
 
 __author__ = "Victor Miti"
 __copyright__ = "Copyright 2021, Victor Miti"
@@ -40,8 +40,9 @@ def get_release_notes():
             elif pattern_to_match in line and count == 1:
                 break
 
-    home = str(Path.home())
-    release_notes = os.path.join(home, "LATEST_RELEASE_NOTES.md")
+    # home = str(Path.home())
+    # release_notes = os.path.join(home, "LATEST_RELEASE_NOTES.md")
+    release_notes = os.path.join("../", "LATEST_RELEASE_NOTES.md")
     with open(release_notes, "w") as f:
         print("".join(lines), file=f, end="")
 

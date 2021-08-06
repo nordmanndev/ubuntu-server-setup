@@ -418,6 +418,7 @@ function setupMail() {
 
   # Install Postfix
   sudo apt-get install libsasl2-modules postfix -y
+  sudo apt-mark auto libsasl2-modules
   sudo apt install mailutils -y
 
   # Install mutt

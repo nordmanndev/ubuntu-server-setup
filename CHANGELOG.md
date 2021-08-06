@@ -4,6 +4,50 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.1.0...v1.2.0) (2021-08-06)
+
+
+### 🐛 Bug Fixes
+
+* do not source `.tmux.conf` during setup ([ee9a938](https://github.com/engineervix/ubuntu-server-setup/commit/ee9a9386515f892bcf1726ebe017795c37876e04))
+* install `net-tools` package to provide the `netstat` command ([8f50b1a](https://github.com/engineervix/ubuntu-server-setup/commit/8f50b1a9921ca1d03ffa7819e47a84547e63252a))
+
+
+### 🚀 Features
+
+* add memcached ([2bc7160](https://github.com/engineervix/ubuntu-server-setup/commit/2bc7160defaec67fbbed4406239a596f7aca6913))
+* add terminal enhancements, extra global npm packages & improve celery setup ([46070d1](https://github.com/engineervix/ubuntu-server-setup/commit/46070d15dcc838c57b98e614870c0aef17af54d0))
+* configure tmux with powerline and Tmux Plugin Manager ([452468b](https://github.com/engineervix/ubuntu-server-setup/commit/452468b5221c4ae954f293923c3c7d734c0f5790))
+* install dos2unix ([f8a4437](https://github.com/engineervix/ubuntu-server-setup/commit/f8a44372f1e357c4861a487b6bc9fffcab2d7aa8))
+* no need for user input when configuring unattended-upgrades ([7e0646a](https://github.com/engineervix/ubuntu-server-setup/commit/7e0646a337f71bfeb1f9e88b2d5ab6193e564401))
+* unattended Postgres install ([8b18b75](https://github.com/engineervix/ubuntu-server-setup/commit/8b18b75d2c4a3ea767ef685d85ed52503d0e750e))
+
+
+### ♻️ Code Refactoring
+
+* apt-mark auto libsasl2-modules ([b7c9933](https://github.com/engineervix/ubuntu-server-setup/commit/b7c9933808a89f5859cf516c88859cfc374eed09))
+* move all dot files into the **configuration_files** directory ([0fbdc21](https://github.com/engineervix/ubuntu-server-setup/commit/0fbdc21acbf2a3fd96b9454777b08c5c9909edd3))
+
+
+### 📝 Docs
+
+* cross out one item in TODO list and reference commit ([9f3c0de](https://github.com/engineervix/ubuntu-server-setup/commit/9f3c0dec4fad82cd8fa3b8a748c180a2281552a4))
+* document project features ([ac2b65f](https://github.com/engineervix/ubuntu-server-setup/commit/ac2b65f07b420adef2cc43ade327c54e2d9a465c))
+* document the project structure ([eff9874](https://github.com/engineervix/ubuntu-server-setup/commit/eff9874abd73e417719eca96a2b65c5c6d6ecfae))
+* enable HTML5 writer support ([001cabe](https://github.com/engineervix/ubuntu-server-setup/commit/001cabea90a2efd37f53b0d875af5eefa8676a22))
+* follow the official instructions for setting up sphinx-rtd-theme ([d720544](https://github.com/engineervix/ubuntu-server-setup/commit/d72054479d52763cfa62b03cf1b300f27ad3aac2))
+* **readme:** make reference to 8b18b7 ([0cd6045](https://github.com/engineervix/ubuntu-server-setup/commit/0cd60456aced1226f6d9525cd6470b31334ba096))
+* **readme:** replace Travis CI badge with Github Actions badge ([100e643](https://github.com/engineervix/ubuntu-server-setup/commit/100e64300f9ec5dfcd1ba7a1ad23206e4b63e9bb))
+* use Hlists for better presentation of long lists ([c538f02](https://github.com/engineervix/ubuntu-server-setup/commit/c538f02d0b416d944a84a65d4f6699a0e7ebfb4a))
+
+
+### 👷 CI/CD
+
+* adapt `get_release_notes.py` for GitHub Actions ([3ab3883](https://github.com/engineervix/ubuntu-server-setup/commit/3ab388310517d7093b59c16e0d65069575db09e9))
+* add some notes, npm `new_release` script & let Travis create draft releases ([bd0e2d4](https://github.com/engineervix/ubuntu-server-setup/commit/bd0e2d47ebdc09151b19ea0421b2990140d8f777))
+* switch to Github Actions ([1944bd5](https://github.com/engineervix/ubuntu-server-setup/commit/1944bd53db43cadc594cbaa75464c7cf640c56b9))
+* update GitHub Actions workflow to include automatic GitHub Releases ([28c3d7a](https://github.com/engineervix/ubuntu-server-setup/commit/28c3d7a12f8eaeeb84ded4f08549873aff517ac2))
+
 ## [v1.1.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.0.0...v1.1.0) (2021-07-08)
 
 

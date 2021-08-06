@@ -124,7 +124,7 @@ function testNTP() {
     echo "Unmask a Masked Service in Systemd ..."
         file /etc/systemd/system/systemd-timesyncd.service
         # sudo rm -v /etc/systemd/system/systemd-timesyncd.service
-        sudo systemctl disable chronyd ; systemctl stop chronyd
+        sudo systemctl disable chronyd ; sudo systemctl stop chronyd
         sudo systemctl status systemd-timesyncd
         sudo systemctl unmask systemd-timesyncd
         sudo systemctl daemon-reload

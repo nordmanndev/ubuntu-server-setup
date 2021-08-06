@@ -121,7 +121,6 @@ function testNTP() {
     ## which is meant to address the problem:
     ## `Failed to restart systemd-timesyncd.service: Unit systemd-timesyncd.service is masked.`
     if [[ $ubuntu_version == '20.04' ]]; then
-    echo "Unmask a Masked Service in Systemd ..."
         sudo systemctl disable chronyd
         file /etc/systemd/system/systemd-timesyncd.service
         # sudo rm -v /etc/systemd/system/systemd-timesyncd.service

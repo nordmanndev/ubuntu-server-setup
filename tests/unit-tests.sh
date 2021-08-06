@@ -121,7 +121,7 @@ function testNTP() {
     ## which is meant to address the problem:
     ## `Failed to restart systemd-timesyncd.service: Unit systemd-timesyncd.service is masked.`
     if [[ $ubuntu_version == '20.04' ]]; then
-        systemctl unmask systemd-timesyncd
+        sudo systemctl unmask systemd-timesyncd
         sudo systemctl restart systemd-timesyncd
     else
         sudo apt-get update

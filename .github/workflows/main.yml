@@ -1,6 +1,9 @@
 name: Continuous Integration
 
+# Enable Buildkit and let compose use it to speed up image building
 env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
   TERM: screen-256color
 
 on:
@@ -13,14 +16,18 @@ on:
     paths-ignore: ["docs/**"]
 
 jobs:
-  # Runs all steps on the VM
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
   test:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        container: ["ubuntu:focal", "ubuntu:bionic"]
+
+    container:
+      image: ${{ matrix.container }}
 
     steps:
       - name: Checkout Code Repository
@@ -34,12 +41,6 @@ jobs:
           # use sed to replace the SSH URL with the public URL, then init and update submodules
           sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
           git submodule update --init --recursive
-
-      - name: System updates
-        run: |
-          sudo apt-get update
-          sudo apt-get upgrade -y
-          sudo systemctl daemon-reload
 
       - name: Run tests
         shell: bash

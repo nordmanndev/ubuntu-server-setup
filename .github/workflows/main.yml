@@ -1,0 +1,43 @@
+name: Continuous Integration
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
+
+  push:
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
+
+jobs:
+  # Runs all steps on the VM
+  test:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-18.04]
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v2
+        # Use https (public access) instead of git for git-submodules.
+        with:
+          submodules: false
+
+      - name: Setup Submodules
+        run: |
+          # use sed to replace the SSH URL with the public URL, then init and update submodules
+          sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+          git submodule update --init --recursive
+
+      - name: Run tests
+        run: |
+          bash -c 'shopt -s globstar; shellcheck ./*.sh; shellcheck ./tests/*.sh'
+          bash tests/unit-tests.sh -skip

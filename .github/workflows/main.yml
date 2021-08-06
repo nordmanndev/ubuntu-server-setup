@@ -38,6 +38,7 @@ jobs:
           git submodule update --init --recursive
 
       - name: Run tests
+        shell: bash
         run: |
           bash -c 'shopt -s globstar; shellcheck ./*.sh; shellcheck ./tests/*.sh'
           bash tests/unit-tests.sh -skip

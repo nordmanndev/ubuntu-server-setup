@@ -1,9 +1,6 @@
 name: Continuous Integration
 
-# Enable Buildkit and let compose use it to speed up image building
 env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
   TERM: screen-256color
 
 on:
@@ -16,18 +13,14 @@ on:
     paths-ignore: ["docs/**"]
 
 jobs:
-  # runs all of the steps inside the specified container rather than on the VM host.
-  # Because of this the network configuration changes from host based network to a container network.
+  # Runs all steps on the VM
   test:
 
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        container: ["ubuntu:focal", "ubuntu:bionic"]
-
-    container:
-      image: ${{ matrix.container }}
+        os: [ubuntu-20.04, ubuntu-18.04]
 
     steps:
       - name: Checkout Code Repository

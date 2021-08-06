@@ -113,8 +113,21 @@ function testTimezone() {
 }
 
 function testNTP() {
-    configureNTP
+    # configureNTP
     ubuntu_version="$(lsb_release -sr)"
+
+    # begin: hack to make this work with Github Actions
+    ## this is a modified version of `configureNTP`
+    ## which is meant to address the problem:
+    ## `Failed to restart systemd-timesyncd.service: Unit systemd-timesyncd.service is masked.`
+    if [[ $ubuntu_version == '20.04' ]]; then
+        systemctl unmask systemd-timesyncd
+        sudo systemctl restart systemd-timesyncd
+    else
+        sudo apt-get update
+        sudo apt-get --assume-yes install ntp
+    fi
+    # end: hack hack to make this work with Github Actions
 
     if [[ $ubuntu_version == '18.04' || $ubuntu_version == '20.04' ]]; then
         sleep 2

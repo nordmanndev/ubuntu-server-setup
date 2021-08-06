@@ -123,13 +123,12 @@ function testNTP() {
     if [[ $ubuntu_version == '20.04' ]]; then
     echo "Unmask a Masked Service in Systemd ..."
         sudo systemctl disable chronyd
-        sudo systemctl status systemd-timesyncd
         file /etc/systemd/system/systemd-timesyncd.service
         # sudo rm -v /etc/systemd/system/systemd-timesyncd.service
         sudo systemctl unmask systemd-timesyncd
         sudo systemctl daemon-reload
         sudo systemctl start systemd-timesyncd
-        sudo systemctl status systemd-timesyncd
+        # sudo systemctl status systemd-timesyncd
         sudo systemctl enable systemd-timesyncd
         sudo systemctl is-enabled systemd-timesyncd
     else

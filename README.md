@@ -3,7 +3,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![Build Status](https://travis-ci.com/engineervix/ubuntu-server-setup.svg?branch=master)](https://travis-ci.com/engineervix/ubuntu-server-setup)
+[![Continuous Integration](https://github.com/engineervix/ubuntu-server-setup/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ubuntu-server-setup/actions/workflows/main.yml)
 [![last commit](https://badgen.net/github/last-commit/engineervix//ubuntu-server-setup)](https://github.com/engineervix/ubuntu-server-setup/commits/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Documentation Status](https://readthedocs.org/projects/ubuntu-server-setup/badge/?version=latest)](https://ubuntu-server-setup.readthedocs.io/en/latest/?badge=latest)

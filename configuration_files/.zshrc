@@ -259,3 +259,9 @@ if [ -x "$(command -v colorls)" ]; then
     alias ls="colorls"
     alias la="colorls -alh"
 fi
+
+# Fix for the error:
+## gpg: signing failed: Inappropriate ioctl for device
+## gpg: [stdin]: clear-sign failed: Inappropriate ioctl for device
+# source: https://tutorials.technology/solved_errors/21-gpg-signing-failed-Inappropriate-ioctl-for-device.html
+export GPG_TTY=$(tty)

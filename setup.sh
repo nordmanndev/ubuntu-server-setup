@@ -314,6 +314,9 @@ function setupPythonDev() {
   sudo touch /etc/tmpfiles.d/celery.conf
   echo "d /var/run/celery 0755 celery celery -" | sudo tee -a /etc/tmpfiles.d/celery.conf
   echo "d /var/log/celery 0755 celery celery -" | sudo tee -a /etc/tmpfiles.d/celery.conf
+
+  # we need this directory to hold celery configs
+  sudo mkdir -p /etc/conf.d/
 }
 
 function setupVim() {

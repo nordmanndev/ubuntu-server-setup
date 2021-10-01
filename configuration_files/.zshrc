@@ -77,7 +77,6 @@ plugins=(
 	common-aliases
   docker
   docker-compose
-  django
   extract
   git
   git-extras

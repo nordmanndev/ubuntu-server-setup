@@ -94,7 +94,6 @@ plugins=(
   web-search
   yarn
   zsh-autosuggestions
-  zsh_reload
   zsh-syntax-highlighting
 )
 

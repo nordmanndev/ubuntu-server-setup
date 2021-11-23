@@ -378,6 +378,12 @@ function setupWebServer() {
   sudo chown root:root /etc/nginx/snippets/ssl.conf
   sudo chown root:root /etc/nginx/snippets/letsencrypt.conf
 
+  # Hetzner's Ubuntu image doesn't seem to have snapd installed by default
+  if [ $(dpkg-query -W -f='${Status}' snapd 2>/dev/null | grep -c "ok installed") -eq 0 ];
+  then
+    sudo apt install snapd;
+  fi
+
   # certbot (letsencrypt support)
   # sudo -H pip3 install certbot certbot-nginx certbot-dns-cloudflare
   sudo snap install core

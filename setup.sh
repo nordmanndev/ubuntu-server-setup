@@ -381,7 +381,7 @@ function setupWebServer() {
   # Hetzner's Ubuntu image doesn't seem to have snapd installed by default
   if [ $(dpkg-query -W -f='${Status}' snapd 2>/dev/null | grep -c "ok installed") -eq 0 ];
   then
-    sudo apt install snapd;
+    sudo apt install snapd -y;
   fi
 
   # certbot (letsencrypt support)

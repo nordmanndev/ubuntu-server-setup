@@ -82,7 +82,7 @@ miscellaneousTasks
     (for use with `selenium <https://selenium-python.readthedocs.io/>`_).
 
 installExtraPackages
-    Here we install a bunch of other packages that I find to be very useful. See :ref:`additional_packages:`
+    Here we install a bunch of other packages that I find to be very useful. See :ref:`additional_packages`
     for the details of these extra packages. Note that the list includes ``texlive-full``, which may take
     a while to download and install. So if you're in a hurry and don't really need a
     full TeX distribution, then perhaps you might wanna comment it out.

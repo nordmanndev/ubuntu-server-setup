@@ -44,7 +44,7 @@ setupRuby
 
 setupTmux
     Tmux comes already installed with Ubuntu, and so there's no need to install it.
-    Here we just install the `Tmux Plugin Manager https://github.com/tmux-plugins/tpm`_ 
+    Here we just install the `Tmux Plugin Manager <https://github.com/tmux-plugins/tpm>`_ 
     and add some configurations and styling (using `Powerline <https://packages.ubuntu.com/focal/powerline>`_)
 
 setupPythonDev

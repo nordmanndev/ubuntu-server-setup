@@ -10,7 +10,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Introduction](#introduction)
 - [Installation](#installation)
@@ -21,6 +21,7 @@
 - [Running tests](#running-tests)
 - [TODO](#todo)
 - [References](#references)
+  - [Documentation](#documentation)
   - [security](#security)
 - [Contributors ✨](#contributors-)
 
@@ -151,6 +152,7 @@ The upstream version of this setup script has been tested against Ubuntu 14.04, 
 
 - official **AWS** Ubuntu 20.04 AMIs (Amazon EC2 Instances)
 - Ubuntu 20.04 droplets on **DigitalOcean**
+- Ubuntu 20.04 cloud servers on **Hetzner**
 
 Feel free to adapt it to other Ubuntu versions and try it on Linode and other providers. Would appreciate any feedback.
 
@@ -186,6 +188,10 @@ Tests are run against a set of Vagrant VMs. To run the tests, run the following 
 - [ ] Continually improve this README
 
 ## References
+
+### Documentation
+
+For additional context and rationale behind the project, check out the [detailed documentation](https://readthedocs.org/projects/ubuntu-server-setup/), which acts as a useful reference not only for those who seek to use the setup script to bootstrap their Ubuntu server, but also for those that would like to fork the project and adapt it to their specific needs, just as I did.
 
 ### security
 

@@ -124,7 +124,7 @@ CONTRIBUTING.md
 setup.sh
     This is the **core** of this project. This is the script that we actually run when setting
     up a new Ubuntu server. If you want to add additional features, you'll probably wanna
-    edit this file.
+    edit this file. For details of the additional functions that constitute the basis for this fork, see :ref:`funcs`.
 
 setupLibrary.sh
     Contains the initial setup functions plus a couple of helper functions that are "imported" in ``setup.sh`` above

@@ -33,27 +33,30 @@ Node.js Stack
   Therefore, the latest LTS version of Node.js is installed, together with Yarn.
 * a bunch of useful Node.js global packages:
 
-  - `browser-sync <https://browsersync.io/>`_
-  - `caniuse-cmd <https://www.npmjs.com/package/caniuse-cmd>`_
-  - `commitizen <https://github.com/commitizen/cz-cli>`_
-  - `concurrently <https://www.npmjs.com/package/concurrently>`_
-  - `doctoc <https://github.com/thlorenz/doctoc>`_
-  - `html-minifier <https://github.com/kangax/html-minifier>`_
-  - `grunt-cli <https://gruntjs.com/>`_
-  - `gulp-cli <https://gulpjs.com/>`_
-  - `lerna <https://github.com/lerna/lerna>`_
-  - `lite-server <https://www.npmjs.com/package/lite-server>`_
-  - `local-cors-proxy <https://github.com/garmeeh/local-cors-proxy>`_
-  - `maildev <http://maildev.github.io/maildev/>`_
-  - `mdpdf <https://www.npmjs.com/package/mdpdf>`_
-  - `mozjpeg <https://github.com/mozilla/mozjpeg>`_
-  - `prettier <https://prettier.io/>`_
-  - `sass <https://sass-lang.com/>`_
-  - `semantic-release-cli <https://github.com/semantic-release/cli>`_
-  - `serve <https://www.npmjs.com/package/serve>`_
-  - `standard-version <https://github.com/conventional-changelog/standard-version>`_
-  - `svgo <https://github.com/svg/svgo>`_
-  - `uglify-js <https://www.npmjs.com/package/uglify-js>`_
+.. hlist::
+    :columns: 2
+
+    - `browser-sync <https://browsersync.io/>`_
+    - `caniuse-cmd <https://www.npmjs.com/package/caniuse-cmd>`_
+    - `commitizen <https://github.com/commitizen/cz-cli>`_
+    - `concurrently <https://www.npmjs.com/package/concurrently>`_
+    - `doctoc <https://github.com/thlorenz/doctoc>`_
+    - `html-minifier <https://github.com/kangax/html-minifier>`_
+    - `grunt-cli <https://gruntjs.com/>`_
+    - `gulp-cli <https://gulpjs.com/>`_
+    - `lerna <https://github.com/lerna/lerna>`_
+    - `lite-server <https://www.npmjs.com/package/lite-server>`_
+    - `local-cors-proxy <https://github.com/garmeeh/local-cors-proxy>`_
+    - `maildev <http://maildev.github.io/maildev/>`_
+    - `mdpdf <https://www.npmjs.com/package/mdpdf>`_
+    - `mozjpeg <https://github.com/mozilla/mozjpeg>`_
+    - `prettier <https://prettier.io/>`_
+    - `sass <https://sass-lang.com/>`_
+    - `semantic-release-cli <https://github.com/semantic-release/cli>`_
+    - `serve <https://www.npmjs.com/package/serve>`_
+    - `standard-version <https://github.com/conventional-changelog/standard-version>`_
+    - `svgo <https://github.com/svg/svgo>`_
+    - `uglify-js <https://www.npmjs.com/package/uglify-js>`_
 
 Python Stack
 -------------
@@ -114,6 +117,8 @@ Additional Server Hardening
 - fail2ban
 - lynis
 - rkhunter
+
+.. _additional_packages:
 
 Additional Packages
 --------------------

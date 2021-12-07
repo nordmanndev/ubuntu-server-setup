@@ -4,6 +4,34 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.3.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.2.0...v1.3.0) (2021-12-07)
+
+
+### ♻️ Code Refactoring
+
+* explicitly specify node 14.x instead of latest lts ([efa6043](https://github.com/engineervix/ubuntu-server-setup/commit/efa6043e7137c938b9441d120172fc37544c8c3e))
+* remove django zsh plugin ([241a13f](https://github.com/engineervix/ubuntu-server-setup/commit/241a13fa79d7396bec3b215a9b205e0008a97c66))
+* remove zsh_reload plugin ([5e52157](https://github.com/engineervix/ubuntu-server-setup/commit/5e521574b24d22823007d12589725a9e8ff296a8))
+
+
+### 🚀 Features
+
+* `sudo mkdir -p /etc/conf.d/` for celery configs ([def7cfd](https://github.com/engineervix/ubuntu-server-setup/commit/def7cfd06baa887b91244e296fa97e26e171b354))
+* add `export GPG_TTY=$(tty)` to `.zshrc` ([a2c5f14](https://github.com/engineervix/ubuntu-server-setup/commit/a2c5f141bdbdc2018c9200f6e054301819de4161))
+* install snapd if it's not installed ([70d0e3e](https://github.com/engineervix/ubuntu-server-setup/commit/70d0e3ede1cd1cd67b6474c4ed348b8e2158efe2))
+
+
+### 🐛 Bug Fixes
+
+* add `-y` option to `apt install snapd` ([ec7fa08](https://github.com/engineervix/ubuntu-server-setup/commit/ec7fa08b595593eadd687f538537532e6d9ada45))
+* pngquant appears twice in apt install commands ([f9f7268](https://github.com/engineervix/ubuntu-server-setup/commit/f9f72683ad31edeb5efb7b6bf1e580ecde8eb484))
+
+
+### 📝 Docs
+
+* correct broken URL ([ae486a5](https://github.com/engineervix/ubuntu-server-setup/commit/ae486a51ea20596054f0ac82722f0fc96ae4243a))
+* finish writing the docs ([0bc7e5e](https://github.com/engineervix/ubuntu-server-setup/commit/0bc7e5ea902096ae909122996ffc26cfa236e9fd))
+
 ## [v1.2.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.1.0...v1.2.0) (2021-08-06)
 
 

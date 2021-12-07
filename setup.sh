@@ -540,7 +540,7 @@ function furtherHardening() {
   sudo sed -i '/^\[sshd\]/a enabled\ =\ true' /etc/fail2ban/jail.local
   echo -e "\e[35m===========================================================\e[00m"
 
-  # lynix -- https://cisofy.com/lynis/
+  # lynis -- https://cisofy.com/lynis/
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 013baa07180c50a7101097ef9de922f1c2fde6c4
   sudo apt install apt-transport-https -y
   echo 'Acquire::Languages "none";' | sudo tee /etc/apt/apt.conf.d/99disable-translations

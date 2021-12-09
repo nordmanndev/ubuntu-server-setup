@@ -588,6 +588,7 @@ function installExtraPackages() {
   sudo apt install ffmpeg -y
   sudo -H pip3 install youtube-dl
   sudo apt install libreoffice-common aspell hunspell -y
+  sudo apt install jq shellcheck -y
   sudo apt install inkscape -y
   sudo apt install autoconf automake autotools-dev -y
   sudo apt install ocrmypdf xvfb rdiff-backup rclone apt-clone firefox -y

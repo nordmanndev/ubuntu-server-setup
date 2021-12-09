@@ -150,6 +150,8 @@ Additional Packages
     - libtool
     - dos2unix
     - scour
+    - shellcheck
+    - jq
     - inkscape
     - libreoffice-common
     - autoconf, automake and autotools-dev

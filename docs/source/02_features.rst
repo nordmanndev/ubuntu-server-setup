@@ -151,7 +151,7 @@ Additional Packages
     - dos2unix
     - scour
     - shellcheck
-    - jq
+    - `jq <https://stedolan.github.io/jq/>`_ and `yq <https://kislyuk.github.io/yq/>`_
     - inkscape
     - libreoffice-common
     - autoconf, automake and autotools-dev

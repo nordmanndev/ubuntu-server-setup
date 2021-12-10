@@ -594,6 +594,7 @@ function installExtraPackages() {
   sudo apt install ocrmypdf xvfb rdiff-backup rclone apt-clone firefox -y
   sudo apt install pandoc sqlite3 poppler-utils ncdu libtool dos2unix -y
   sudo -H pip3 install scour
+  sudo -H pip3 install yq
   
   # https://github.com/travis-ci/travis.rb
   gem install travis --no-document

@@ -13,16 +13,17 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+from datetime import datetime
 import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
 project = "ubuntu-server-setup"
-copyright = "2021, Victor Miti"
+copyright = f"{datetime.now().year}, Victor Miti"
 author = "Victor Miti"
 
 # The full version, including alpha/beta/rc tags
-release = "1.1.0"
+release = "1.3.0"
 
 
 # -- General configuration ---------------------------------------------------

@@ -405,6 +405,7 @@ function setupWebServer() {
   echo "" | sudo tee -a /root/letsencrypt.sh
   echo "# If you have other services that use the certificates:" | sudo tee -a /root/letsencrypt.sh
   echo "# systemctl restart mosquitto" | sudo tee -a /root/letsencrypt.sh
+  sudo chmod +x /root/letsencrypt.sh
 
   # crontab
   systemctl enable --now cron

@@ -371,6 +371,10 @@ function setupWebServer() {
   sudo nginx -t
   sudo systemctl enable nginx
 
+  # add www-data to username group (otherwise you'll have nginx errors on Ubuntu 22.04!)
+  # Ref: https://stackoverflow.com/a/25776092
+  sudo gpasswd -a www-data "${username}"
+
   # copy some configurations
   sudo cp -v configuration_files/nginx/ssl.conf /etc/nginx/snippets/
   sudo cp -v configuration_files/nginx/letsencrypt.conf /etc/nginx/snippets/

@@ -148,11 +148,11 @@ sudo certbot certonly \
 
 ## Supported versions
 
-The upstream version of this setup script has been tested against Ubuntu 14.04, Ubuntu 16.04, Ubuntu 18.04 and Ubuntu 20.04. However, this fork primarily targets **Ubuntu 20.04**, and has only been tested on:
+The upstream version of this setup script has been tested against Ubuntu 14.04, Ubuntu 16.04, Ubuntu 18.04 and Ubuntu 20.04. However, this fork primarily targets **Ubuntu 20.04** and **Ubuntu 22.04**, and has only been tested on:
 
 - official **AWS** Ubuntu 20.04 AMIs (Amazon EC2 Instances)
 - Ubuntu 20.04 droplets on **DigitalOcean**
-- Ubuntu 20.04 cloud servers on **Hetzner**
+- Ubuntu 20.04 and 22.04 cloud servers on **Hetzner**
 
 Feel free to adapt it to other Ubuntu versions and try it on Linode and other providers. Would appreciate any feedback.
 

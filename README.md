@@ -124,6 +124,7 @@ cat ~/.ssh/id_rsa.pub
 - [ ] incorporate [Healthchecks.io](https://healthchecks.io/) in your cron jobs
 - [ ] update `TINYPNG_API_KEY` and `SENDGRID_API_KEY` in `.zshrc`
 - [ ] setup your projects and deploy
+- [ ] on Ubuntu 22.04, you'll need to fix your vim config, see <https://github.com/amix/vimrc/issues/645#issuecomment-1120374288>
 
 Here's an example to test that your email works. I use the awesome [mail-tester.com](https://www.mail-tester.com) and with this configuration you should get a 10/10 score.
 

@@ -46,7 +46,7 @@ def release(args=None):
         get_current_tag = subprocess.getoutput(
             "git describe --abbrev=0 --tags `git rev-list --tags --skip=0  --max-count=1`"
         )
-        previous_tag = get_current_tag.strip("\n")
+        previous_tag = get_current_tag.rstrip()
         # now we can pass result to standard-release
         os.system(
             f'npm run release -- --commit-all --release-as {args.release_type} --releaseCommitMessageFormat "bump: ✈️ {previous_tag} → v{{{{currentTag}}}}"'

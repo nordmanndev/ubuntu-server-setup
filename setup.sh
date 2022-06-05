@@ -201,6 +201,7 @@ function setupNodeYarn() {
   sudo npm install -g maildev
   sudo npm install -g mdpdf --unsafe-perm=true --allow-root
   sudo npm install -g mozjpeg --unsafe-perm=true --allow-root
+  sudo npm install -g npm-check
   sudo npm install -g prettier
   sudo npm install -g sass
   sudo npm install -g semantic-release-cli

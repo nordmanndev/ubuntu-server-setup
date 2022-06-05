@@ -4,6 +4,37 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.4.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.3.0...v1.4.0) (2022-06-05)
+
+
+### 🐛 Bug Fixes
+
+* add nginx fix for Ubuntu 22.04 ([8fdcc22](https://github.com/engineervix/ubuntu-server-setup/commit/8fdcc224dc88291c93c6ce72cba9a762f0664820))
+* ensure that Letsencrypt renewal hook is executable ([c53a2fc](https://github.com/engineervix/ubuntu-server-setup/commit/c53a2fcba5347d646587f59bd58479a3c112c57c))
+
+
+### 👷 CI/CD
+
+* add Ubuntu 22.04 to OS test matrix ([2359b54](https://github.com/engineervix/ubuntu-server-setup/commit/2359b541dbd7db99bbf1f455dc90606be8d2f996))
+
+
+### 🚀 Features
+
+* install npm-check ([a18b37b](https://github.com/engineervix/ubuntu-server-setup/commit/a18b37bc7f46f1bce4d36ef28c315ff243c3c240))
+* install shellcheck and jq ([09bc5bd](https://github.com/engineervix/ubuntu-server-setup/commit/09bc5bdd4915be6b07b7352d96bf388fa5afa165))
+* install yq ([2437c46](https://github.com/engineervix/ubuntu-server-setup/commit/2437c4657081b8a45a32e9f36a38dfd87a202fa8))
+
+
+### ✅ Tests
+
+* fix failing test on Ubuntu 22.04 ([b8b1f6a](https://github.com/engineervix/ubuntu-server-setup/commit/b8b1f6a47c704473274c523982969380c9f151b8))
+
+
+### 📝 Docs
+
+* add note on vim setup for Ubuntu 22.04 ([06278c9](https://github.com/engineervix/ubuntu-server-setup/commit/06278c9df407a3b704e280f1072441ce3f2eb51a))
+* update README to distinguish between sendgrid/mailjet setups ([049356c](https://github.com/engineervix/ubuntu-server-setup/commit/049356cf05baef5cb7f0e3e318bbd3a2278c6076))
+
 ## [v1.3.0](https://github.com/engineervix/ubuntu-server-setup/compare/v1.2.0...v1.3.0) (2021-12-07)
 
 

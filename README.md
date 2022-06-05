@@ -14,6 +14,8 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
+  - [If you're using Sendgrid](#if-youre-using-sendgrid)
+  - [If you're using MailJet](#if-youre-using-mailjet)
 - [Setup prompts](#setup-prompts)
 - [Post setup actions](#post-setup-actions)
 - [Supported versions](#supported-versions)
@@ -65,12 +67,14 @@ This is an opinionated setup script to automate the setup and provisioning of Ub
 - Setup [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/)
 - Setup [Nginx](https://www.nginx.com/) and [Certbot](https://certbot.eff.org/)
 - Setup [Postgres](https://www.postgresql.org/) and [PostGIS](https://postgis.net/)
-- Setup [Postfix](http://www.postfix.org/)
+- Setup [Postfix](http://www.postfix.org/) with either [Sendgrid](https://sendgrid.com/) or [MailJet](https://www.mailjet.com/)
 - Plus a whole lot of other things. Have a look at [`setup.sh`](setup.sh) for more details.
 
 [@jasonheecs](https://github.com/jasonheecs)'s original project provides an excellent starting point for provisioning Ubuntu Servers. This fork builds on top of that foundation to develop a heavily opinionated setup for deploying Python web applications. The idea is to be able to quickly setup a Linux box and deploy a Python web application without much of a hassle.
 
 ## Installation
+
+### If you're using Sendgrid
 
 SSH into your server, clone this repository (& submodules) into your home directory, and run the setup script:
 
@@ -80,6 +84,20 @@ git clone --recurse-submodules https://github.com/engineervix/ubuntu-server-setu
 && cd ubuntu-server-setup \
 && bash setup.sh
 ```
+
+### If you're using MailJet
+
+SSH into your server, clone this repository (& submodules) into your home directory, checkout the `feature/mailjet` branch and run the setup script:
+
+```bash
+cd ~
+git clone --recurse-submodules https://github.com/engineervix/ubuntu-server-setup.git \
+&& cd ubuntu-server-setup \
+&& git checkout feature/mailjet \
+&& bash setup.sh
+```
+
+**Note** » You might wanna switch to the [feature/mailjet](https://github.com/engineervix/ubuntu-server-setup/tree/feature/mailjet#readme) version of this README.
 
 ## Setup prompts
 

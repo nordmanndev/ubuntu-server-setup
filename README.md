@@ -103,11 +103,20 @@ git clone --recurse-submodules https://github.com/engineervix/ubuntu-server-setu
 
 ⌨️ When the setup script is run, you will be prompted to enter the username and password of the new user account, as well as Global Git Name and E-mail Address.
 
-⌨️ Following that, you will then be prompted to add a public ssh key (which should be from your local machine) for the new account. To generate an ssh key from your local machine:
+⌨️ Following that, you will then be prompted to add a public ssh key (which should be from your local machine) for the new account.
+
+You can display it on your local terminal via (assuming it's called `id_rsa.pub` and it's in the `~/.ssh/` directory. Feel free to change the path / name if you saved it in a different location / named it differently) ...
+
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+... then copy it and paste it in the terminal on your server.
+
+**Note** » If you don't have an existing key and you would like to generate one, or perhaps you already have one and would like to generate another ssh key from your local machine:
 
 ```bash
 ssh-keygen -t rsa
-cat ~/.ssh/id_rsa.pub
 ```
 
 ⌨️ You will further be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Africa/Lusaka' if you do not specify a value.
@@ -121,7 +130,7 @@ cat ~/.ssh/id_rsa.pub
 
 > This script assumes that the email address you supply is associated with your sendgrid domain. `myhostname` is therefore extracted from this email address. So, if your "mail_from" email address is josh@example.co.zm, then example.co.zm will be used as `myhostname` in the Postfix setup.
 
-⌨️ You will be asked to confirm that you want to have unattended upgrades.
+<!-- ⌨️ You will be asked to confirm that you want to have unattended upgrades. -->
 
 ⌨️ You will also have to specify some **folder names** for
 

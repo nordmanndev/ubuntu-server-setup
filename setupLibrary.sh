@@ -56,12 +56,6 @@ function changeSSHConfig() {
     sudo sed -re 's/^(\#?)(PermitRootLogin)([[:space:]]+)(.*)/PermitRootLogin no/' -i /etc/ssh/sshd_config
 }
 
-# Setup the Uncomplicated Firewall
-function setupUfw() {
-    sudo ufw allow OpenSSH
-    yes y | sudo ufw enable
-}
-
 # Create the swap file based on amount of physical memory on machine (Maximum size of swap is 4GB)
 function createSwap() {
    local swapmem=$(($(getPhysicalMemory) * 2))

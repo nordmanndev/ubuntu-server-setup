@@ -11,18 +11,18 @@ function getCurrentDir() {
 function includeDependencies() {
     # shellcheck source=./setupLibrary.sh
     source "${current_dir}/setupLibrary.sh"
+    source "${current_dir}/lib/redis/setup.sh"
 }
 
 current_dir=$(getCurrentDir)
 includeDependencies
+
 output_file="output.log"
+git_name="nordmanndev"
+git_email="admin@nordmann.dev"
 
 function main() {
   read -rp "Enter the username of the new user account:" username
-
-  echo "Please specify your Git Global Name & Email" 
-  read -rp 'Your (git) Name: ' git_name 
-  read -rp 'Your (git) Email Address: ' git_email 
 
   promptForPassword
 
@@ -59,12 +59,6 @@ function main() {
   sudo -i -u "${username}" -H bash -c "mkdir -p /home/${username}/bin"
 
   setupGit
-  setupZSH
-  setupRuby
-  setupPythonDev
-  setupVim
-  setupTmux
-  setupDatabases
   setupWebServer
   setupMail
   configureSystemUpdatesAndLogs
@@ -330,7 +324,9 @@ function setupVim() {
   sudo cp -v "$HOME"/ubuntu-server-setup/configuration_files/.vimrc.after /home/"${username}"/ && sudo chown -R "${username}":"${username}" /home/"${username}"/.vimrc.after
 }
 
-function setupDatabases() {
+
+
+function setupPostgres() {
   ########## Databases + Caching
   # postgres
   sudo apt install postgresql postgresql-contrib postgis libpq-dev -y
@@ -361,65 +357,7 @@ function setupDatabases() {
   sudo netstat -plunt
 }
 
-function setupWebServer() {
-  # nginx
-  sudo apt install nginx -y
-  sudo ufw allow 'Nginx Full'
-  sudo ufw status
 
-  sudo rm -v /etc/nginx/sites-enabled/default
-
-  sudo nginx -t
-  sudo systemctl enable nginx
-
-  # add www-data to username group (otherwise you'll have nginx errors on Ubuntu 22.04!)
-  # Ref: https://stackoverflow.com/a/25776092
-  sudo gpasswd -a www-data "${username}"
-
-  # copy some configurations
-  sudo cp -v configuration_files/nginx/ssl.conf /etc/nginx/snippets/
-  sudo cp -v configuration_files/nginx/letsencrypt.conf /etc/nginx/snippets/
-
-  sudo chown root:root /etc/nginx/snippets/ssl.conf
-  sudo chown root:root /etc/nginx/snippets/letsencrypt.conf
-
-  # Hetzner's Ubuntu image doesn't seem to have snapd installed by default
-  if [ $(dpkg-query -W -f='${Status}' snapd 2>/dev/null | grep -c "ok installed") -eq 0 ];
-  then
-    sudo apt install snapd -y;
-  fi
-
-  # certbot (letsencrypt support)
-  # sudo -H pip3 install certbot certbot-nginx certbot-dns-cloudflare
-  sudo snap install core
-  sudo snap refresh core
-  sudo snap install --classic certbot
-  sudo ln -s /snap/bin/certbot /usr/bin/certbot
-  sudo snap set certbot trust-plugin-with-root=ok
-  sudo snap install certbot-dns-cloudflare
-
-  sudo mkdir -p /var/www/letsencrypt/.well-known/
-
-  # Cloudflare's Authenticated Origin Pulls feature. See
-  # https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull#zone-level--cloudflare-certificate
-  sudo mkdir -p /etc/letsencrypt/cloudflare/
-  sudo cp -v  configuration_files/origin-pull-ca.pem /etc/letsencrypt/cloudflare/origin-pull-ca.pem
-
-  echo "#!/bin/bash" | sudo tee /root/letsencrypt.sh
-  echo "systemctl reload nginx" | sudo tee -a /root/letsencrypt.sh
-  echo "" | sudo tee -a /root/letsencrypt.sh
-  echo "# If you have other services that use the certificates:" | sudo tee -a /root/letsencrypt.sh
-  echo "# systemctl restart mosquitto" | sudo tee -a /root/letsencrypt.sh
-  sudo chmod +x /root/letsencrypt.sh
-
-  # crontab
-  systemctl enable --now cron
-  crontab -l | { cat; echo "40 3 * * * certbot renew --noninteractive --renew-hook /root/letsencrypt.sh"; } | crontab -
-
-  # openSSL
-  sudo openssl dhparam -out /etc/letsencrypt/dhparam.pem 4096
-
-}
 
 function setupMail() {
 
@@ -530,35 +468,6 @@ function configureSystemUpdatesAndLogs() {
   echo -e "\e[35m===========================================================\e[00m"
 }
 
-function furtherHardening() {
-  # https://www.digitalocean.com/community/questions/best-practices-for-hardening-new-sever-in-2017
-  # https://linux-audit.com/ubuntu-server-hardening-guide-quick-and-secure/
-  # https://dennisnotes.com/note/20180627-ubuntu-18.04-server-setup/
-  # https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts
-  # https://www.ubuntu.com/security
-  sudo apt install fail2ban -y
-  sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-  echo -e "\e[35m===========================================================\e[00m"
-  echo -e "\e[35mNow updating the /etc/fail2ban/jail.local file ...\e[00m"
-  sudo sed -i "s/^destemail\ =\ root@localhost/destemail\ =\ $root_email/" /etc/fail2ban/jail.local
-  sudo sed -i "s/^sender\ =\ root@<fq-hostname>/sender\ =\ $mail_from/" /etc/fail2ban/jail.local
-  echo -e "\e[35menabling sshd ...\e[00m"
-  sudo sed -i '/^\[sshd\]/a enabled\ =\ true' /etc/fail2ban/jail.local
-  echo -e "\e[35m===========================================================\e[00m"
-
-  # lynis -- https://cisofy.com/lynis/
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 013baa07180c50a7101097ef9de922f1c2fde6c4
-  sudo apt install apt-transport-https -y
-  echo 'Acquire::Languages "none";' | sudo tee /etc/apt/apt.conf.d/99disable-translations
-  echo "deb https://packages.cisofy.com/community/lynis/deb/ stable main" | sudo tee /etc/apt/sources.list.d/cisofy-lynis.list
-  sudo apt update
-  sudo apt install lynis -y
-
-  # https://www.theurbanpenguin.com/detecting-rootkits-with-rkhunter-in-ubuntu-18-04/
-  sudo apt install -y rkhunter
-
-  sudo lynis audit system
-}
 
 function miscellaneousTasks() {
 
@@ -580,40 +489,6 @@ function miscellaneousTasks() {
   sudo rm -v /home/"${username}"/bin/geckodriver-v0.29.1-linux64.tar.gz
 
   sudo chown -R "${username}":"${username}" /home/"${username}"/bin/
-}
-
-function installExtraPackages() {
-  sudo apt-get install wkhtmltopdf -y
-  # sudo apt install default-jre -y
-  sudo apt install openjdk-8-jdk -y
-
-  # pdftk
-  sudo snap install pdftk
-
-  # ffmpeg, youtube-dl and more
-  sudo apt install ffmpeg -y
-  sudo -H pip3 install youtube-dl
-  sudo apt install libreoffice-common aspell hunspell -y
-  sudo apt install jq shellcheck -y
-  sudo apt install inkscape -y
-  sudo apt install autoconf automake autotools-dev -y
-  sudo apt install ocrmypdf xvfb rdiff-backup rclone apt-clone firefox -y
-  sudo apt install pandoc sqlite3 poppler-utils ncdu libtool dos2unix -y
-  sudo -H pip3 install scour
-  sudo -H pip3 install yq
-  
-  # https://github.com/travis-ci/travis.rb
-  gem install travis --no-document
-
-  # https://github.com/athityakumar/colorls
-  gem install colorls
-
-  # https://volta.sh/
-  sudo -i -u "${username}" -H bash -c "curl https://get.volta.sh | bash"
-
-  # install texlive-full
-  sudo apt install texlive-full -y  # this may take a while
-
 }
 
 # --------- end addtitional features not in original script --------- #
